@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+    <link rel="stylesheet" type="text/css"  th:href="@{/css/header.css}">
+    <link rel="stylesheet" type="text/css"  th:href="@{/css/footer.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/product_detail.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
+
+    <title>Document</title>
+    <style>
+
+        .panel-shadow {
+            box-shadow: rgba(0, 0, 0, 0.3) 7px 7px 7px;
+        }
+        .panel-white {
+            border: 1px solid #dddddd;
+        }
+        .panel-white  .panel-heading {
+            color: #333;
+            background-color: #fff;
+            border-color: #ddd;
+        }
+        .panel-white  .panel-footer {
+            background-color: #fff;
+            border-color: #ddd;
+        }
+
+        .post .post-heading {
+            height: 95px;
+            padding: 20px 15px;
+        }
+        .post .post-heading .avatar {
+            width: 60px;
+            height: 60px;
+            display: block;
+            margin-right: 15px;
+        }
+        .post .post-heading .meta .title {
+            margin-bottom: 0;
+        }
+        .post .post-heading .meta .title a {
+            color: black;
+        }
+        .post .post-heading .meta .title a:hover {
+            color: #aaaaaa;
+        }
+        .post .post-heading .meta .time {
+            margin-top: 8px;
+            color: #999;
+        }
+        .post .post-image .image {
+            width: 100%;
+            height: auto;
+        }
+        .post .post-description {
+            padding: 15px;
+        }
+        .post .post-description p {
+            font-size: 14px;
+        }
+        .post .post-description .stats {
+            margin-top: 20px;
+        }
+        .post .post-description .stats .stat-item {
+            display: inline-block;
+            margin-right: 15px;
+        }
+        .post .post-description .stats .stat-item .icon {
+            margin-right: 8px;
+        }
+        .post .post-footer {
+            border-top: 1px solid #ddd;
+            padding: 15px;
+        }
+        .post .post-footer .input-group-addon a {
+            color: #454545;
+        }
+        .post .post-footer .comments-list {
+            padding: 0;
+            margin-top: 20px;
+            list-style-type: none;
+        }
+        .post .post-footer .comments-list .comment {
+            display: block;
+            width: 100%;
+            margin: 20px 0;
+        }
+        .post .post-footer .comments-list .comment .avatar {
+            width: 35px;
+            height: 35px;
+        }
+        .post .post-footer .comments-list .comment .comment-heading {
+            display: block;
+            width: 100%;
+        }
+        .post .post-footer .comments-list .comment .comment-heading .user {
+            font-size: 14px;
+            font-weight: bold;
+            display: inline;
+            margin-top: 0;
+            margin-right: 10px;
+        }
+        .post .post-footer .comments-list .comment .comment-heading .time {
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 0;
+            display: inline;
+        }
+        .post .post-footer .comments-list .comment .comment-body {
+            margin-left: 50px;
+        }
+        .post .post-footer .comments-list .comment > .comments-list {
+            margin-left: 50px;
+        }
+    </style>
+</head>
+<body ng-app="demo" ng-controller="Hello">
+<div class="wrapper">
+    <div th:replace="fragments/header :: header_info"></div>
+
+    <div class="content container-fluid">
+        <div class="row detail-product">
+            <div class="picture_list column">
+                <h3>Liên hệ quảng cáo</h3>
+
+                <div style="background-image: url(http://1.bp.blogspot.com/-IunMgCsWgPM/VSvgkkORTRI/AAAAAAAAABM/D_9V1o8KT2w/s1600/bg_adleft.png);height: 400px;
+    width: 100px;">
+
+                </div>
+
+
+            </div>
+            <div class="picture_focus column">
+                <div class="picture-focus__inner"><img height="370px" width="400px" id="picture-focus_pic" class="img-responsive" ng-src="http://localhost:8080{{productDetail.image}}" alt=""></div>
+
+
+            </div>
+            <div class="detail_desc column">
+                <div class="content_product">
+                    <span ng-bind="productDetail.name" style="color: blue;font-style: italic;font-size: 25px;"></span>
+                    <h5 id="product-id">Số lượng hiện có : <span style="font-size:20px;font-weight: bold">{{productDetail.quantity}}</span></h5>
+                    <h2 id="product-price"><span style="color: red">{{productDetail.price}}</span> $</h2>
+                    <p>Đổi trả sản phẩm nguyên giá, giảm giá trong vòng 15 ngày</p>
+                    <div><span style="font-size: 20px;font-weight: bold;color: green">Mô tả : </span>{{productDetail.description}}</div>
+                    <h4>MÀU SẮC</h4>
+                    <ul id="list-color" class="row">
+                        <li data-item-id="0" class="color-item" style="background-color: white;border: 1px solid black"></li>
+                        <li data-item-id="1" class="color-item" style="background-color: black;"></li>
+                    </ul>
+
+                    <h4>KÍCH THƯỚC</h4>
+                    <ul id="list-size" class="row">
+                        <li data-item-id="0" class="size-item">S</li>
+                        <li data-item-id="1" class="size-item">M</li>
+                        <li data-item-id="2" class="size-item">L</li>
+                    </ul>
+
+
+                    <div id="add-to-cart" ng-click="addItemDetailToCart()"><a href="">THÊM VÀO GIỎ HÀNG</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3>Sản phẩm cùng loại</h3>
+    <div class="row">
+        <div class="col-md-2"  ng-repeat="product in listProductCategory">
+            <a><img src="http://localhost:8080{{product.image}}" ng-click="viewProduct(product.productId)" width="200px" height="200px"></a>
+            <p style="font-size:20px; font-weight: bold;text-align: center;">{{product.nameProduct}}</p>
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <h2>Top comment</h2>
+        <div class="row" ng-repeat="comment in listComment ">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div class="panel panel-white post panel-shadow">
+                    <div class="post-heading" >
+                        <div class="pull-left image">
+                            <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                        </div>
+                        <div class="pull-left meta">
+                            <div class="title h5">
+                                <a href="#"><b>{{comment.userName}}</b></a>
+                                made a post.
+                            </div>
+                            <h6 class="text-muted time">{{comment.created}}</h6>
+                        </div>
+                    </div>
+                    <div class="post-description">
+                        <p>{{comment.comment}}</p>
+                        <div class="stats">
+                            <a href="#" class="btn btn-default stat-item">
+                                <i class="fa fa-thumbs-up icon"></i>{{comment.like}}
+                            </a>
+                            <a href="#" class="btn btn-default stat-item">
+                                <i class="fa fa-thumbs-down icon"></i>{{comment.dislike}}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+        <div class="row" ng-hide="userName == 'Login' ">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div class="panel panel-white post panel-shadow">
+                    <div class="post-heading">
+                        <div class="pull-left image">
+                            <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                        </div>
+                        <div class="pull-left meta" style="width: 550px;">
+                            <div class="title h5">
+                                <a href="#"><b>{{userName}}</b></a><br>
+                                <form>
+                                    <div class="form-group">
+                                        <br>
+                                        <input type="text" ng-model="dataComment.comment" placeholder="Type your comment ..." class="form-control" id="comment">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-description">
+                        <button class="btn btn-success" ng-click="addComment()">Send</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+    </div>
+<!--<div th:replace="customer/fragments/footer :: footer_info">-->
+
+    <div th:replace="fragments/footer :: footer_info"></div>
+</div>
+
+    <script>
+    function getAllUrlParams(url) {
+
+        // get query string from url (optional) or window
+        var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
+
+        // we'll store the parameters here
+        var obj = {};
+
+        // if query string exists
+        if (queryString) {
+
+            // stuff after # is not part of query string, so get rid of it
+            queryString = queryString.split('#')[0];
+
+            // split our query string into its component parts
+            var arr = queryString.split('&');
+
+            for (var i=0; i<arr.length; i++) {
+                // separate the keys and the values
+                var a = arr[i].split('=');
+
+                // in case params look like: list[]=thing1&list[]=thing2
+                var paramNum = undefined;
+                var paramName = a[0].replace(/\[\d*\]/, function(v) {
+                    paramNum = v.slice(1,-1);
+                    return '';
+                });
+
+                // set parameter value (use 'true' if empty)
+                var paramValue = typeof(a[1])==='undefined' ? true : a[1];
+
+                // (optional) keep case consistent
+                paramName = paramName.toLowerCase();
+                paramValue = paramValue.toLowerCase();
+
+                // if parameter name already exists
+                if (obj[paramName]) {
+                    // convert value to array (if still string)
+                    if (typeof obj[paramName] === 'string') {
+                        obj[paramName] = [obj[paramName]];
+                    }
+                    // if no array index number specified...
+                    if (typeof paramNum === 'undefined') {
+                        // put the value on the end of the array
+                        obj[paramName].push(paramValue);
+                    }
+                    // if array index number specified...
+                    else {
+                        // put the value at that index number
+                        obj[paramName][paramNum] = paramValue;
+                    }
+                }
+                // if param name doesn't exist yet, set it
+                else {
+                    obj[paramName] = paramValue;
+                }
+            }
+        }
+
+        return obj;
+    }
+
+</script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/product_detail.js}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+
+    <script type="text/javascript">
+        var app = angular.module('demo', [])
+        app.controller('Hello', function($scope, $http,$interval) {
+                $scope.productId=getAllUrlParams().id;
+                $scope.userId=getAllUrlParams().uid;
+
+                $scope.orderId=getAllUrlParams().o;
+                $scope.isSearch=false;
+            $scope.checkSale= true;
+            var config={
+                dataType: 'json',
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            };
+            var day= new Date();
+            var timeNow={
+                date:day.getFullYear()+'-'+(day.getMonth()+1)+'-'+day.getDate()
+            };
+            var dataPost = angular.toJson(timeNow, true);
+            $http.post('http://localhost:8080/api/sale/detail',dataPost,config).then(function(response) {
+                if (response.data.success == true) {
+                    $scope.saleNow=response.data.data.saleNumber;
+                    $scope.idsale=response.data.data.id;
+                    $scope.checkSale=true;
+                    $http.get('http://localhost:8080/api/sale/detailSale/'+$scope.idsale).then(function (response) {
+                        $scope.date = new Date(response.data.data.endDate).getTime();
+                        $interval(function () {
+                            $scope.theTime = new Date().getTime();
+                            var distance = $scope.date - $scope.theTime;
+                            console.log(distance);
+                            if(distance>0){
+                                $scope.checkSale= true;
+                                console.log("hiện sale");
+                                $scope.theDay =  Math.floor(distance / (1000 * 60 * 60 * 24));
+                                $scope.theHour =  Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                $scope.theMinus = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                                $scope.theSecond = Math.floor((distance % (1000 * 60)) / 1000);
+                            }else{
+                                $scope.checkSale=false;
+                                console.log("ẩn sale");
+                            }
+
+                        }, 1000);
+
+                    });
+                }
+            });
+
+
+            $scope.checkSearch=function(){
+                    if($scope.searchProduct.length==0){
+                        $scope.isSearch=false;
+                    }else{
+                        $scope.isSearch=true;
+                        console.log($scope.searchProduct);
+                    }
+
+                };
+
+            $http.get('http://localhost:8080/api/product/getAll').then(function (response) {
+                $scope.listProductAll = response.data.data;
+            });
+                $http.get('http://localhost:8080/api/order/detailOrder/' +$scope.orderId ).then(function (response) {
+                    $scope.sale = response.data.data;
+                    console.log($scope.sale);
+                });
+
+
+                $scope.dataComment={};
+
+
+                $http.get('http://localhost:8080/api/product/detail/' + $scope.productId).then(function (response) {
+                    $scope.productDetail = response.data.data;
+                    $http.get('http://localhost:8080/api/category/listProduct/' + response.data.data.category).then(function (response) {
+                        $scope.listProductCategory = response.data.data;
+                        console.log($scope.listProductCategory);
+                    });
+                });
+
+                $http.get('http://localhost:8080/api/comment/listComment/'+ $scope.productId).then(function (response) {
+                    $scope.listComment = response.data.data;
+                });
+
+
+            if($scope.userId === undefined) {
+                $scope.userName = "Login";
+                $scope.countProduct=0;
+                $scope.viewProduct=function (productId) {
+                    window.location.href="product_detail?id="+productId;
+                };
+
+                $scope.detailProductSearch=function(id){
+                    $scope.searchProduct="";
+                    window.location.href="/product_detail?id="+id;
+                };
+
+                $scope.home=function () {
+                    window.location.href="home";
+                };
+
+                $scope.detailCategory=function (id) {
+                    window.location.href = "/category?c="+id;
+                };
+
+
+            }else {
+                $scope.detailProductSearch=function(id){
+                    $scope.searchProduct="";
+                    window.location.href="/product_detail?uid="+$scope.userId+"&o="+$scope.orderId+"&id="+id;
+                };
+                $scope.logout=function () {
+                    $scope.userName="Login";
+                    window.location.href = "/home";
+                };
+                $scope.home=function () {
+                    window.location.href="home?id="+$scope.userId+"&o="+$scope.orderId;
+                };
+                $scope.detailCategory=function (id) {
+                    window.location.href = "/category?id="+$scope.userId +"&o="+$scope.orderId+"&c="+id;
+                };
+                $http.get('http://localhost:8080/api/notification/getIsReadNoti/'+$scope.userId).then(function (response) {
+                    $scope.numberNoti=response.data.data;
+
+                });
+                $scope.showNotifi=function () {
+                    $http.get('http://localhost:8080/api/notification/getAllNoti/' + $scope.userId).then(function (response) {
+                        $scope.listNotification=response.data.data;
+                        console.log($scope.listNotification);
+
+                        $http.get('http://localhost:8080/api/notification/updateNoti/' + $scope.userId).then(function (response) {
+                            if(response.data.success){
+                                $http.get('http://localhost:8080/api/notification/getIsReadNoti/'+$scope.userId).then(function (response) {
+                                    $scope.numberNoti = response.data.data;
+                                });
+                            }
+                        });
+                    });
+                };
+                $http.get('http://localhost:8080/api/order/countproduct?status=4&uid=' + $scope.userId).then(function (response) {
+                    $scope.countProduct = response.data.data;
+                });
+
+                $http.get('http://localhost:8080/api/order/detail?statusId=4&userId=' + $scope.userId).then(function (response) {
+                    $scope.productInCart = response.data.data;
+                    var i = 0;
+                    $scope.totalMoney = 0;
+                    for (i = 0; i < $scope.productInCart.length; i++) {
+                        $scope.totalMoney += $scope.productInCart[i].price * $scope.productInCart[i].quantity;
+                    }
+                    $scope.totalMoney = $scope.totalMoney - $scope.totalMoney * $scope.sale.saleNumber/100;
+
+
+                });
+
+                $http.get('http://localhost:8080/api/user/detail?id=' + $scope.userId).then(function (response) {
+                    $scope.userName = response.data.data.name;
+                    $scope.userEmail = response.data.data.email;
+                    $scope.userAddress = response.data.data.address;
+                });
+                $scope.viewProduct=function (productId) {
+                    window.location.href="product_detail?uid="+ $scope.userId+"&o="+ $scope.orderId+"&id="+productId;
+                };
+
+                $scope.addComment=function () {
+                    var config={
+                        dataType: 'json',
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    };
+                    $scope.dataComment.userId=$scope.userId;
+                    $scope.dataComment.productId=$scope.productId;
+                    var dataComment = angular.toJson($scope.dataComment, true);
+                    console.log(dataComment);
+                    $http.post('http://localhost:8080/api/comment/addComment',dataComment,config).then(function(response) {
+
+                        $http.get('http://localhost:8080/api/comment/listComment/'+ $scope.productId).then(function (response) {
+                            $scope.listComment = response.data.data;
+                        });
+                        $scope.dataComment={};
+                        toastr.success('Đã thêm  thành công !');
+                    });
+                };
+
+                $scope.addItemDetailToCart = function () {
+                    $http.get('http://localhost:8080/api/order/addProduct/' + $scope.orderId + "?productId=" + $scope.productId + "&quantity=1").then(function (response) {
+                        $http.get('http://localhost:8080/api/order/countproduct?status=4&uid=' + $scope.userId).then(function (response) {
+                            $scope.countProduct = response.data.data;
+                        });
+
+                        var config={
+                            dataType: 'json',
+                            headers: {
+                                "Content-Type": "application/json"
+                            }
+                        };
+                        var day= new Date();
+                        var timeNow={
+                            date:day.getFullYear()+'-'+(day.getMonth()+1)+'-'+day.getDate()
+                        };
+                        var dataPost = angular.toJson(timeNow, true);
+                        $http.post('http://localhost:8080/api/sale/detail',dataPost,config).then(function(response) {
+                            if(response.data.success==true){
+                                var saleDetail={
+                                    saleId:response.data.data.id
+                                };
+                                dataPost=angular.toJson(saleDetail, true);
+                                console.log($scope.sale.id+"id va id+"+saleDetail.saleId);
+                                if( $scope.sale.id != saleDetail.saleId ) {
+                                    $http.post('http://localhost:8080/api/order/update-order/' + $scope.orderId, dataPost, config).then(function (response) {
+                                        $http.get('http://localhost:8080/api/order/detailOrder/' +$scope.orderId ).then(function (response) {
+                                            $scope.sale = response.data.data;
+                                            $http.get('http://localhost:8080/api/order/detail?statusId=4&userId=' + $scope.userId).then(function (response) {
+                                                $scope.productInCart = response.data.data;
+                                                var i = 0;
+                                                $scope.totalMoney = 0;
+                                                for (i = 0; i < $scope.productInCart.length; i++) {
+                                                    $scope.totalMoney += $scope.productInCart[i].price * $scope.productInCart[i].quantity;
+                                                }
+                                                $scope.totalMoney = $scope.totalMoney - $scope.totalMoney * $scope.sale.saleNumber/100;
+
+
+                                            });
+                                        });
+                                        console.log('Update thanh cong');
+                                    });
+                                }
+                                else{
+                                    $http.get('http://localhost:8080/api/order/detailOrder/' +$scope.orderId ).then(function (response) {
+                                        $scope.sale = response.data.data;
+                                        $http.get('http://localhost:8080/api/order/detail?statusId=4&userId=' + $scope.userId).then(function (response) {
+                                            $scope.productInCart = response.data.data;
+                                            var i = 0;
+                                            $scope.totalMoney = 0;
+                                            for (i = 0; i < $scope.productInCart.length; i++) {
+                                                $scope.totalMoney += $scope.productInCart[i].price * $scope.productInCart[i].quantity;
+                                            }
+                                            $scope.totalMoney = $scope.totalMoney - $scope.totalMoney * $scope.sale.saleNumber/100;
+
+
+                                        });
+                                    });
+                                    console.log('Thêm  thành cong hang khuyen mãi');
+                                }
+                            }else{
+
+                                var saleDetail={
+                                    saleId:4
+                                };
+
+                                dataPost = angular.toJson(saleDetail, true);
+                                console.log(dataPost);
+                                $http.post('http://localhost:8080/api/order/update-order/'+$scope.orderId,dataPost,config).then(function(response) {
+                                    $http.get('http://localhost:8080/api/order/detailOrder/' +$scope.orderId ).then(function (response) {
+                                        $scope.sale = response.data.data;
+                                        $http.get('http://localhost:8080/api/order/detail?statusId=4&userId=' + $scope.userId).then(function (response) {
+                                            $scope.productInCart = response.data.data;
+                                            var i = 0;
+                                            $scope.totalMoney = 0;
+                                            for (i = 0; i < $scope.productInCart.length; i++) {
+                                                $scope.totalMoney += $scope.productInCart[i].price * $scope.productInCart[i].quantity;
+                                            }
+                                            $scope.totalMoney = $scope.totalMoney - $scope.totalMoney * $scope.sale.saleNumber/100;
+
+
+                                        });
+                                    });
+                                    console.log('mua hang thanh cong nhung giu nguyen giá');
+                                });
+
+                            }
+                        });
+                        $http.get('http://localhost:8080/api/order/detailOrder/' +$scope.orderId ).then(function (response) {
+                            $scope.sale = response.data.data;
+                            console.log($scope.sale);
+                        });
+                        toastr.success('Đã thêm  thành công !');
+                    });
+
+                };
+
+                $scope.addItemToCart = function (product) {
+                    $http.get('http://localhost:8080/api/order/addProduct/' + $scope.orderId + "?productId=" + product + "&quantity=1").then(function (response) {
+                        $http.get('http://localhost:8080/api/order/countproduct?status=4&uid=' + $scope.userId).then(function (response) {
+                            $scope.countProduct = response.data.data;
+                        });
+
+                        var config={
+                            dataType: 'json',
+                            headers: {
+                                "Content-Type": "application/json"
+                            }
+                        };
+                        var day= new Date();
+                        var timeNow={
+                            date:day.getFullYear()+'-'+(day.getMonth()+1)+'-'+day.getDate()
+                        };
+                        var dataPost = angular.toJson(timeNow, true);
+                        $http.post('http://localhost:8080/api/sale/detail',dataPost,config).then(function(response) {
+                            if(response.data.success==true){
+                                var saleDetail={
+                                    saleId:response.data.data.id
+                                };
+                                dataPost=angular.toJson(saleDetail, true);
+                                console.log($scope.sale.id+"id va id+"+saleDetail.saleId);
+                                if( $scope.sale.id != saleDetail.saleId ) {
+                                    $http.post('http://localhost:8080/api/order/update-order/' + $scope.orderId, dataPost, config).then(function (response) {
+                                        $http.get('http://localhost:8080/api/order/detailOrder/' +$scope.orderId ).then(function (response) {
+                                            $scope.sale = response.data.data;
+                                            $http.get('http://localhost:8080/api/order/detail?statusId=4&userId=' + $scope.userId).then(function (response) {
+                                                $scope.productInCart = response.data.data;
+                                                var i = 0;
+                                                $scope.totalMoney = 0;
+                                                for (i = 0; i < $scope.productInCart.length; i++) {
+                                                    $scope.totalMoney += $scope.productInCart[i].price * $scope.productInCart[i].quantity;
+                                                }
+                                                $scope.totalMoney = $scope.totalMoney - $scope.totalMoney * $scope.sale.saleNumber/100;
+
+
+                                            });
+                                        });
+                                        console.log('Update thanh cong');
+                                    });
+                                }
+                                else{
+                                    $http.get('http://localhost:8080/api/order/detailOrder/' +$scope.orderId ).then(function (response) {
+                                        $scope.sale = response.data.data;
+                                        $http.get('http://localhost:8080/api/order/detail?statusId=4&userId=' + $scope.userId).then(function (response) {
+                                            $scope.productInCart = response.data.data;
+                                            var i = 0;
+                                            $scope.totalMoney = 0;
+                                            for (i = 0; i < $scope.productInCart.length; i++) {
+                                                $scope.totalMoney += $scope.productInCart[i].price * $scope.productInCart[i].quantity;
+                                            }
+                                            $scope.totalMoney = $scope.totalMoney - $scope.totalMoney * $scope.sale.saleNumber/100;
+
+
+                                        });
+                                    });
+                                    console.log('Thêm  thành cong hang khuyen mãi');
+                                }
+                            }else{
+
+                                var saleDetail={
+                                    saleId:4
+                                };
+
+                                dataPost = angular.toJson(saleDetail, true);
+                                console.log(dataPost);
+                                $http.post('http://localhost:8080/api/order/update-order/'+$scope.orderId,dataPost,config).then(function(response) {
+                                    $http.get('http://localhost:8080/api/order/detailOrder/' +$scope.orderId ).then(function (response) {
+                                        $scope.sale = response.data.data;
+                                        $http.get('http://localhost:8080/api/order/detail?statusId=4&userId=' + $scope.userId).then(function (response) {
+                                            $scope.productInCart = response.data.data;
+                                            var i = 0;
+                                            $scope.totalMoney = 0;
+                                            for (i = 0; i < $scope.productInCart.length; i++) {
+                                                $scope.totalMoney += $scope.productInCart[i].price * $scope.productInCart[i].quantity;
+                                            }
+                                            $scope.totalMoney = $scope.totalMoney - $scope.totalMoney * $scope.sale.saleNumber/100;
+
+
+                                        });
+                                    });
+                                    console.log('mua hang thanh cong nhung giu nguyen giá');
+                                });
+
+                            }
+                        });
+                        $http.get('http://localhost:8080/api/order/detailOrder/' +$scope.orderId ).then(function (response) {
+                            $scope.sale = response.data.data;
+                            console.log($scope.sale);
+                        });
+                        toastr.success('Đã thêm  thành công !');
+                    });
+
+                };
+
+                $scope.minusItemToCart = function (product) {
+                    $http.get('http://localhost:8080/api/order/minusProduct/' + $scope.orderId + "?productId=" + product.productId + "&quantity=1").then(function (response) {
+                        $http.get('http://localhost:8080/api/order/detail?statusId=4&userId=' + $scope.userId).then(function (response) {
+                            $scope.productInCart = response.data.data;
+                            var i = 0;
+                            $scope.totalMoney = 0;
+                            for (i = 0; i < $scope.productInCart.length; i++) {
+                                $scope.totalMoney += $scope.productInCart[i].price * $scope.productInCart[i].quantity;
+                            }
+                            $scope.totalMoney = $scope.totalMoney - $scope.totalMoney * $scope.sale.saleNumber/100;
+
+                        });
+                        toastr.success('Đã giảm  thành công !');
+                    });
+                };
+
+                $scope.RemoveItem = function (product) {
+                    $http.get('http://localhost:8080/api/order/deleteProduct?productId=' + product.productId + "&orderId=" + $scope.orderId).then(function (response) {
+                        $http.get('http://localhost:8080/api/order/countproduct?status=4&uid=' + $scope.userId).then(function (response) {
+                            $scope.countProduct = response.data.data;
+                        });
+                        $http.get('http://localhost:8080/api/order/detail?statusId=4&userId=' + $scope.userId).then(function (response) {
+                            $scope.productInCart = response.data.data;
+                            var i = 0;
+                            $scope.totalMoney = 0;
+                            for (i = 0; i < $scope.productInCart.length; i++) {
+                                $scope.totalMoney += $scope.productInCart[i].price * $scope.productInCart[i].quantity;
+                            }
+                            $scope.totalMoney = $scope.totalMoney - $scope.totalMoney * $scope.sale.saleNumber/100;
+
+                        });
+                        toastr.success('Đã xóa thành công !');
+                    });
+                };
+
+                $scope.nextPage = function () {
+                    window.location.href = "/createOrder?id=" + $scope.userId + "&o=" + $scope.orderId;
+                };
+            }
+
+        });
+</script>
+</body>
+</html>

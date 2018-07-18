@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="loginApp" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Login</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap.min.css}">
+        <link rel="stylesheet" th:href="@{/assets/font-awesome/css/font-awesome.min.css}">
+		<link rel="stylesheet" th:href="@{/assets/css/form-elements.css}">
+        <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+        <link rel="shortcut icon" th:href="@{/assets/ico/favicon.png}">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" th:href="@{/assets/ico/apple-touch-icon-144-precomposed.png}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" th:href="@{/assets/ico/apple-touch-icon-114-precomposed.png}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" th:href="@{/assets/ico/apple-touch-icon-72-precomposed.png}">
+        <link rel="apple-touch-icon-precomposed" th:href="@{/assets/ico/apple-touch-icon-57-precomposed.png}">
+
+    </head>
+
+    <body ng-controller="loginCtrl">
+
+        <!-- Top content -->
+        <div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+                	
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                            <h1><strong>Canifu</strong> Login &amp; Register Forms</h1>
+                          	<div class="description">
+                          		<p>You can visit home our at hear <a href="home_landing.html"> <STRONG>CANIFU</STRONG> </a>. Good luck for you <i class="fa fa-smile-o"></i></p>
+                          	</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-5">
+                        	
+                        	<div class="form-box">
+	                        	<div class="form-top">
+	                        		<div class="form-top-left">
+	                        			<h3>Login to our site</h3>
+	                            		<p>Enter username and password to log on ! </p>
+	                        		</div>
+	                        		<div class="form-top-right">
+	                        			<i class="fa fa-key"></i>
+	                        		</div>
+	                            </div>
+	                            <div class="form-bottom">
+				                    <form class="login-form">
+				                    	<div class="form-group">
+				                    		<label class="sr-only">Email</label>
+				                        	<input type="text" placeholder="Email..." class="form-username form-control" ng-model="email">
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only" >Password</label>
+				                        	<input type="password"  placeholder="Password..." class="form-password form-control" ng-model="password">
+				                        </div>
+				                        <button class="btn" ng-click="loginUser()">Sign in</button>
+				                    </form>
+			                    </div>
+		                    </div>
+		                
+		                	<div class="social-login">
+	                        	<h3>...or login with:</h3>
+	                        	<div class="social-login-buttons">
+		                        	<a class="btn btn-link-1 btn-link-1-facebook" href="#">
+		                        		<i class="fa fa-facebook"></i> Facebook
+		                        	</a>
+		                        	<a class="btn btn-link-1 btn-link-1-twitter" href="#">
+		                        		<i class="fa fa-twitter"></i> Twitter
+		                        	</a>
+		                        	<a class="btn btn-link-1 btn-link-1-google-plus" href="#">
+		                        		<i class="fa fa-google-plus"></i> Google Plus
+		                        	</a>
+	                        	</div>
+	                        </div>
+	                        
+                        </div>
+                        
+                        <div class="col-sm-1 middle-border"></div>
+                        <div class="col-sm-1"></div>
+                        	
+                        <div class="col-sm-5">
+                        	
+                        	<div class="form-box">
+                        		<div class="form-top">
+	                        		<div class="form-top-left">
+	                        			<h3>Sign up now</h3>
+	                            		<p>Fill in the form below to get instant access:</p>
+	                        		</div>
+	                        		<div class="form-top-right">
+	                        			<i class="fa fa-pencil"></i>
+	                        		</div>
+	                            </div>
+	                            <div class="form-bottom">
+				                    <form class="registration-form">
+				                    	<div class="form-group">
+				                    		<label class="sr-only">Your name</label>
+				                        	<input type="text" ng-model="dataUser.name" placeholder="Your name..." class="form-first-name form-control" >
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only" >Email</label>
+				                        	<input type="text" ng-model="dataUser.email" placeholder="Email..." class="form-last-name form-control" >
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only" >Password</label>
+				                        	<input type="password" ng-model="dataUser.password" placeholder="Password..." class="form-password form-control" >
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only">Address</label>
+				                        	<textarea ng-model="dataUser.address" placeholder="About address..." 
+				                        				class="form-about-yourself form-control"></textarea>
+				                        </div>
+				                        <button class="btn" ng-click="registerUser()">Sign me up!</button>
+				                    </form>
+			                    </div>
+                        	</div>
+                        	
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Footer -->
+        <footer>
+        	<div class="container">
+        		<div class="row">
+        			
+        			<div class="col-sm-8 col-sm-offset-2">
+        				<div class="footer-border"></div>
+        				
+        			</div>
+        			
+        		</div>
+        	</div>
+        </footer>
+
+        <!-- Javascript -->
+        <script th:src="@{/assets/js/jquery-1.11.1.min.js}"></script>
+        <script th:src="@{/assets/bootstrap/js/bootstrap.min.js}"></script>
+        <script th:src="@{/assets/js/jquery.backstretch.min.js}"></script>
+        <script th:src="@{/assets/js/scripts.js}"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+        <script type="text/javascript">
+		   var app = angular.module('loginApp', []) ;
+		   
+				app.controller('loginCtrl', function($scope, $http) {
+					var dataObj ={};
+					$scope.message="";
+					$scope.dataUser={};
+					$scope.loginUser=function(){
+						$http.get('http://localhost:8080/api/user/login?email='+$scope.email).then(function(response) {
+				        $scope.userId = response.data.data.userId;
+				        $scope.orderId = response.data.data.orderId;
+				        window.location.href="/home?id="+$scope.userId+"&o="+$scope.orderId;
+
+				    	});
+					};	
+
+				    $scope.registerUser	=function(){
+						var config={
+								dataType: 'json',
+								 headers: {
+						        "Content-Type": "application/json"
+						    }
+						};
+						var dataPost = angular.toJson($scope.dataUser, true);
+							$http.post('http://localhost:8080/api/user/register',dataPost,config).then(function(response) {
+								$scope.dataUser={};
+								 swal("Congruation! ", "You created the account!", "success");
+				    	});
+				    };	
+
+
+				});
+
+
+				app.config(function ($httpProvider) {
+				  $httpProvider.defaults.headers.common = {};
+				  $httpProvider.defaults.headers.post = {};
+				  $httpProvider.defaults.headers.put = {};
+				  $httpProvider.defaults.headers.patch = {};
+				});
+
+        </script>
+
+    </body>
+
+</html>

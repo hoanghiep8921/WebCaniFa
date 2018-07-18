@@ -1,0 +1,11 @@
+.wrapper {
+    max-width: 1400px;
+    height: auto;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+.column {
+    float: left;
+    position: relative;
+}

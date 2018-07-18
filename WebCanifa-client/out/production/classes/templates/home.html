@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home_landing.css}">
+
+    <title>Document</title>
+</head>
+<body>
+<div class="wrapper">
+    <!--<div id="header"></div>-->
+    <div th:replace="fragments/header :: header_info"></div>
+    <div class="panner-top embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Xws9AGH4ayc?rel=0&autoplay=1&mute=1&loop=1;&controls=0&showinfo=0&start=5&showinfo=0&enablejsapi=1&origin=https:%2F%2Fcanifa.com?controls=0"
+                width="auto" height="720" frameborder="0"></iframe>
+    </div>
+
+    <div class="sale-information__inner">
+        <img class="" th:src="@{/img/TMDT-04.jpg}" alt="">
+    </div>
+
+    <div class="banner-bottom">
+        <div class="row banner-bottom__inner">
+            <div class="col-lg-6 banner-item">
+                <div class="banner-item_inner ">
+                    <img src="https://canifa.s3.amazonaws.com/media/wysiwyg/banner2018/aoni_nu.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 banner-item">
+                <div class="banner-item_inner ">
+                    <img src="https://canifa.s3.amazonaws.com/media/wysiwyg/banner2018/aoni_nam.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2>Sản Phẩm mới</h2>
+    <div class="owl-wrapper-outer">
+        <div class="owl-wrapper" draggable="true" id="draggable">
+            <div class="product-item pull-left" id="product-first">
+                <div class="product-item_inner">
+                    <a href="#"><img alt=""></a>
+                    <!--<img src="https://canifa.s3.amazonaws.com/media/catalog/product/cache_generated/500x/6th17w006-sa195-33.jpg" alt="">-->
+                </div>
+
+                <h4 class="product-mame" >haha</h4>
+                <h3 class="product-price" >iiui</h3>
+            </div>
+        </div>
+        <!-- Indicators -->
+        <div class="product-list_indicators">
+            <li data-item-id="0" id="indicator_1" class="indicator-item"></li>
+            <li data-item-id="1" id="indicator_2" class="indicator-item"></li>
+        </div>
+
+    </div>
+
+    <div class="celebaration-title clear-fix">
+        <div class="titlle-video_advert">
+            <h3>BST CELEBRATION ON EARTH</h3>
+        </div>
+        <a href="">Nam</a>
+        <a href="">Nữa</a>
+    </div>
+
+    <div class="panner-top embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TOSH7k5mAZE?rel=0&mute=1&loop=1;&controls=0&showinfo=0&start=5&showinfo=0&enablejsapi=1&origin=https:%2F%2Fcanifa.com?controls=0"
+                width="auto" height="720" frameborder="0"></iframe>
+    </div>
+
+    <div class="celebaration-title clear-fix">
+        <div class="titlle-video_advert">
+            <h3>BST Be Active Be Cool</h3>
+            <h5>Năng động để tỏa sáng</h5>
+        </div>
+        <a href="">Nam</a>
+        <a href="">Nữa</a>
+    </div>
+
+    <div class="panner-top embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/BsaefDlmRN8?rel=0&mute=1&loop=1;&controls=0&showinfo=0&start=5&showinfo=0&enablejsapi=1&origin=https:%2F%2Fcanifa.com?controls=0"
+                width="auto" height="720" frameborder="0"></iframe>
+    </div>
+
+    <div class="sale-box">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="sale-left_background">
+                    <div class="sale-left_inner">
+                        <h4>TRANG TIN</h4>
+                        <h1>KHUYẾN MÃI</h1>
+                        <a href=""><span>CHI TIẾT</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="sale-right pull-right">
+                    <img class="img-responsive" src="https://canifa.com/skin/frontend/canifa/default/images/home-upgrade-demo/sale-up-to.jpg" alt="">
+                    <ul class="link-list">
+                        <li><a href="#">NAM</a></li>
+                        <li><a href="#">NỮ</a></li>
+                        <li><a href="#">BÉ TRAI</a></li>
+                        <li><a href="#">BÉ GÁI</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="advert_more">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="advert-item__inner">
+                    <a href="">
+                        <h3>CUNG CẤP ĐỒNG PHỤC</h3>
+                    </a>
+                    <p>CANIFA nhận cung cấp hàng trăm mẫu áo đồng phục dành cho văn phòng, lớp học, nhóm bạn, câu lạc bộ. </p>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="advert-item__inner">
+                    <a href="">
+                        <h3>CUNG CẤP ĐỒNG PHỤC</h3>
+                    </a>
+                    <p>CANIFA nhận cung cấp hàng trăm mẫu áo đồng phục dành cho văn phòng, lớp học, nhóm bạn, câu lạc bộ. </p>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="advert-item__inner">
+                    <a href="">
+                        <h3>CUNG CẤP ĐỒNG PHỤC</h3>
+                    </a>
+                    <p>CANIFA nhận cung cấp hàng trăm mẫu áo đồng phục dành cho văn phòng, lớp học, nhóm bạn, câu lạc bộ. </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="register-follow">
+        <div class="row">
+            <div class="col-lg-5">
+                <a class="" href="">
+                    <div class="social-link icon-follow pull-right">
+                        <!--<img th:src="@{/img/img-general.png}" alt="">-->
+                    </div>
+                </a>
+
+                <a href="https://www.facebook.com/">
+                    <div class="facebook-link icon-follow pull-right">
+                        <!--<img th:src="@{/img/img-general.png}" alt="">-->
+                    </div>
+                </a>
+
+                <h3 class="follow_us pull-right">Follow us</h3>
+            </div>
+            <div class="col-lg-7">
+                <input id="inputEmailRegester" type="text" placeholder="Đăng kí nhận thông tin sự kiện khuyến mại">
+                <button id="inputEmailRegester_button">Đăng KÝ</button>
+            </div>
+        </div>
+    </div>
+
+    ﻿<h2>﻿Blog - Chuyển động Canifa</h2>
+    <div class="canifa-news">
+        <div class="row">
+            <div class="col-lg-6">
+                <a href=""><img class="img-responsive" src="//s3-ap-southeast-1.amazonaws.com/canifablog/blog/wp-content/uploads/2018/01/18101222/mau-tim-ket-hop-voi-mau-gi-thi-dep-4.png" alt=""></a>
+            </div>
+            <div class="col-lg-6">
+                <h2>Phối đồ với màu tím " thủy chung": Không khó nếu bạn đọc 6 cách dưới đây!</h2>
+                <h5>18.01.2018</h5>
+                <p>Mùa đông được coi là thời điểm mà các gam màu trầm tối thống trị trong hầu hết outfit từ nhà ra ngõ. Song đừng để xu hướng ấy giới hạn sắc màu phong cách cá biệt của bản thân bởi bạn hoàn toàn có thể thay đổi không khí ảm đạm ngày đông bằng cách chơi màu với trang phục. Mùa đông này, tại sao không thử nghiệm với sắc tím? Trong cẩm nang lần này, CANIFA sẽ giới thiệu đến bạn những bí quyết đặc biệt nhất khi lên đồ với gam màu khó nhằn này, để vừ...</p>
+                <h3>Các tin khác</h3>
+
+                <table id="other-news_table">
+                    <tr>
+                        <td>10.01.2018</td>
+                        <td>10 cách kết hợp áo sơ mi và áo len nữ để bạn "nổi bần bật" trong mùa đông này</td>
+                    </tr>
+                    <tr>
+                        <td>08.01.2018</td>
+                        <td>Mặc đẹp không phải nghĩ " với 6 cách lên đồ với màu vàng sau đây</td>
+                    </tr>
+                    <tr>
+                        <td>08.01.2018</td>
+                        <td>Mặc đẹp không phải nghĩ " với 6 cách lên đồ với màu vàng sau đây</td>
+                    </tr>
+                    <tr>
+                        <td>08.01.2018</td>
+                        <td>Mặc đẹp không phải nghĩ " với 6 cách lên đồ với màu vàng sau đây</td>
+                    </tr>
+                    <tr>
+                        <td>08.01.2018</td>
+                        <td>Mặc đẹp không phải nghĩ " với 6 cách lên đồ với màu vàng sau đây</td>
+                    </tr>
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <h2>HỆ THỐNG CỬA HÀNG</h2>
+    <p>Thông tin về cửa hàng, cơ hội nghề nghiệp và dịch vụ khách hàng</p>
+    <div id="canifa_policy">
+        <div class="row">
+            <div class="col-lg-4"></div>
+        </div>
+    </div>
+
+    <ul class="canifa-policy_box row">
+        <li class="policy-item_inner col-lg-4">
+            <a href=""><img class="img-responsive" src="https://canifa.s3.amazonaws.com/media/wysiwyg/banners-2017/ReturnPolicy.png" alt=""></a>
+            <h4>Quy định đổi sản phẩm</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci architecto blanditiis consequatur corporis delectus dolores eos exercitationem</p>
+        </li>
+
+        <li class="policy-item_inner col-lg-4">
+            <a href=""><img class="img-responsive" src="https://canifa.s3.amazonaws.com/media/wysiwyg/banners-2017/ReturnPolicy.png" alt=""></a>
+            <h4>Quy định đổi sản phẩm</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci architecto blanditiis consequatur corporis delectus dolores eos exercitationem</p>
+        </li>
+
+        <li class="policy-item_inner col-lg-4">
+            <a href=""><img class="img-responsive" src="https://canifa.s3.amazonaws.com/media/wysiwyg/banners-2017/ReturnPolicy.png" alt=""></a>
+            <h4>Quy định đổi sản phẩm</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci architecto blanditiis consequatur corporis delectus dolores eos exercitationem</p>
+        </li>
+    </ul>
+</div>
+<div th:replace="fragments/footer :: footer_info"></div>
+</div>
+
+<script type="text/javascript" th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" th:src="@{/js/header.js}"></script>
+<script type="text/javascript" th:src="@{/js/home_landing.js}"></script>
+
+</body>
+</html>

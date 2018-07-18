@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Create New Order </title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" th:href="@{/order/images/icons/favicon.ico}" />
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/order/vendor/bootstrap/css/bootstrap.min.css}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/order/fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/order/fonts/Linearicons-Free-v1.0.0/icon-font.min.css}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/order/vendor/animate/animate.css}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/order/vendor/css-hamburgers/hamburgers.min.css}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/order/vendor/animsition/css/animsition.min.css}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/order/vendor/select2/select2.min.css}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/order/vendor/daterangepicker/daterangepicker.css}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/order/css/util.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/order/css/main.css}">
+<!--===============================================================================================-->
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+    <div style="position: fixed;top: 0;left: 0;">
+        <button class="btn btn-danger" ng-click="home()"> Home </button>
+    </div>
+
+	<div class="container-contact100">
+		<div class="contact100-map" id="google_map" data-map-x="40.722047" data-map-y="-73.986422" data-pin="images/icons/map-marker.png" data-scrollwhell="0" data-draggable="1"></div>
+
+		<button class="contact100-btn-show">
+			<i class="fa fa-envelope-o" aria-hidden="true"></i>
+		</button>
+
+		<div class="wrap-contact100">
+			<button class="contact100-btn-hide">
+				<i class="fa fa-close" aria-hidden="true"></i>
+			</button>
+
+			<form class="contact100-form validate-form">
+				<span class="contact100-form-title">
+					New Order
+				</span>
+
+				<div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate="Phone number is required">
+					<span class="label-input100">Your Phone Number</span>
+					<input class="input100" type="text" ng-model="phone" placeholder="Enter your phone number">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate = "Address is required">
+					<span class="label-input100">Address</span>
+					<input class="input100" type="text" ng-model="orderUser.address" placeholder="Enter your address ">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate = "Detail is required">
+					<span class="label-input100">Detail</span>
+					<textarea class="input100" ng-model="detailUser" placeholder="Size and Color you want..."></textarea>
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="container-contact100-form-btn">
+					<button class="contact100-form-btn" ng-click="creatNewOrder()">
+						<span>
+							Submit
+							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+						</span>
+					</button>
+				</div>
+			</form>
+
+			<span class="contact100-more">
+				For any question contact our 24/7 call center: <span class="contact100-more-highlight">01669218921</span>
+			</span>
+		</div>
+	</div>
+
+
+
+	<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+	<script th:src="@{/order/vendor/jquery/jquery-3.2.1.min.js}"></script>
+<!--===============================================================================================-->
+	<script th:src="@{/order/vendor/animsition/js/animsition.min.js}"></script>
+<!--===============================================================================================-->
+	<script th:src="@{/order/vendor/bootstrap/js/popper.js}"></script>
+	<script th:src="@{/order/vendor/bootstrap/js/bootstrap.min.js}"></script>
+<!--===============================================================================================-->
+	<script th:src="@{/order/vendor/select2/select2.min.js}"></script>
+<!--===============================================================================================-->
+	<script th:src="@{/order/vendor/daterangepicker/moment.min.js}"></script>
+	<script th:src="@{/order/vendor/daterangepicker/daterangepicker.js}"></script>
+<!--===============================================================================================-->
+	<script th:src="@{/order/vendor/countdowntime/countdowntime.js}"></script>
+<!--===============================================================================================-->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
+	<script th:src="@{/order/js/map-custom.js}"></script>
+<!--===============================================================================================-->
+	<script th:src="@{/order/js/main.js}"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-23581568-13');
+    </script>
+    <script type="text/javascript">
+        function getAllUrlParams(url) {
+
+            // get query string from url (optional) or window
+            var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
+
+            // we'll store the parameters here
+            var obj = {};
+
+            // if query string exists
+            if (queryString) {
+
+                // stuff after # is not part of query string, so get rid of it
+                queryString = queryString.split('#')[0];
+
+                // split our query string into its component parts
+                var arr = queryString.split('&');
+
+                for (var i=0; i<arr.length; i++) {
+                    // separate the keys and the values
+                    var a = arr[i].split('=');
+
+                    // in case params look like: list[]=thing1&list[]=thing2
+                    var paramNum = undefined;
+                    var paramName = a[0].replace(/\[\d*\]/, function(v) {
+                        paramNum = v.slice(1,-1);
+                        return '';
+                    });
+
+                    // set parameter value (use 'true' if empty)
+                    var paramValue = typeof(a[1])==='undefined' ? true : a[1];
+
+                    // (optional) keep case consistent
+                    paramName = paramName.toLowerCase();
+                    paramValue = paramValue.toLowerCase();
+
+                    // if parameter name already exists
+                    if (obj[paramName]) {
+                        // convert value to array (if still string)
+                        if (typeof obj[paramName] === 'string') {
+                            obj[paramName] = [obj[paramName]];
+                        }
+                        // if no array index number specified...
+                        if (typeof paramNum === 'undefined') {
+                            // put the value on the end of the array
+                            obj[paramName].push(paramValue);
+                        }
+                        // if array index number specified...
+                        else {
+                            // put the value at that index number
+                            obj[paramName][paramNum] = paramValue;
+                        }
+                    }
+                    // if param name doesn't exist yet, set it
+                    else {
+                        obj[paramName] = paramValue;
+                    }
+                }
+            }
+
+            return obj;
+        }
+
+    </script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+    <script>
+        var app = angular.module('myApp', []) ;
+
+        app.controller('myCtrl', function($scope, $http) {
+
+            $scope.userId=getAllUrlParams().id;
+            $scope.orderId=getAllUrlParams().o;
+            $scope.home=function () {
+                window.location.href="/home?id="+$scope.userId+"&o="+$scope.orderId;
+            };
+            $scope.creatNewOrder=function () {
+                var config={
+                    dataType: 'json',
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                };
+                $scope.orderUser.status=1;
+                $scope.orderUser.detail= "SĐT :"+$scope.phone+ "- Chi tiết sản phẩm :" + $scope.detailUser;
+                var dataPost = angular.toJson($scope.orderUser, true);
+                console.log(dataPost);
+                $http.post('http://localhost:8080/api/order/update-order/'+$scope.orderId,dataPost,config).then(function(response) {
+                    $scope.dataUser={};
+                    swal("Congruation! ", "You created the new order!", "success");
+                    setTimeout(function(){ window.location.href="/historyBuy?id="+$scope.userId+"&o="+$scope.orderId;; }, 2000);
+
+                });
+            };
+        });
+        app.config(function ($httpProvider) {
+            $httpProvider.defaults.headers.common = {};
+            $httpProvider.defaults.headers.post = {};
+            $httpProvider.defaults.headers.put = {};
+            $httpProvider.defaults.headers.patch = {};
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,528 @@
+.slideshow {
+    position:relative; /*Make the slideshow container  position:relative and make the sub elements absolute to position the sub element absolute to the container*/
+    height:320px; /*The slide show height*/
+    overflow:hidden;
+}
+.slideshow div {
+    position:absolute;
+    top:0px;;
+    left:0;
+    z-index:8;
+}
+.slideshow div img
+{
+    width:600px; /*The image slide show width*/
+    height:320px; /*The image slide show height*/
+}
+.slideshow div.active {
+    z-index:10;
+}
+.slideshow div.lastactive {
+    z-index:9;
+}
+
+/*-----------------------*/
+.panner-top {
+    width: 100%;
+    margin: 0;
+    padding: 0 -15px;
+}
+
+.video_panner {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.sale-information__inner {
+    padding: 10px 0;
+}
+.sale-information__inner > img {
+    width: 100%;
+}
+
+.banner-item_inner > img {
+    width: 100%;
+}
+
+/*-------banner-bottom--------*/
+
+.banner-bottom {
+    width: 100%;
+    padding: 0 0 15px 0;
+    border-bottom: 1px solid black;
+}
+
+/*.item-left {*/
+    /*padding-right: 2px;*/
+/*}*/
+
+
+/*.item-right {*/
+    /*padding-left: 2px;*/
+/*}*/
+.banner-bottom__inner {
+    padding: 0 13px;
+}
+
+.banner-item {
+    padding: 2px;
+}
+
+/*---------new-product-------------*/
+
+.new-product_list_inner {
+    padding: 0 9px;
+}
+
+.product-item {
+    padding: 0 0.5% 0 0;
+    width: 10.13%;
+    margin-bottom: 30px;
+}
+
+.product-item_inner  img {
+    width: 100%;
+    margin-bottom: 25px;
+    display: inline-block;
+ }
+.product-mame, .product-price {
+    padding: 0;
+    margin: 0;
+}
+
+.owl-wrapper-outer {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    padding: 0;
+    height: 560px;
+    border-bottom: 1px solid black;
+}
+
+.owl-wrapper {
+    width: 250%;
+    padding-right: -100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#draggable {
+    left: 0;
+}
+
+/*----------responsive------*/
+@media only screen and (max-width: 992px) {
+    .product-item {
+        width: 12.5%;
+    }
+    .owl-wrapper {
+        width: 266.66%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .product-item {
+        width: 50%;
+        padding: 2px;
+    }
+    .owl-wrapper {
+        width: 100%;
+        position: static;
+    }
+
+    .owl-wrapper-outer{
+        overflow: visible;
+        position:static;
+        width: auto;
+     }
+    .product-mame, .product-price {
+        font-size: 10pt;
+    }
+
+    .product-item_inner  img {
+        margin-bottom: 5px;
+    }
+}
+
+.product-list_indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    margin-left: -12px;
+    padding: 0;
+}
+
+.indicator-item {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background: black;
+}
+
+.indicator-active {
+    background: red;
+}
+
+/*BST CELEBRATION ON EARTH*/
+
+.celebaration-title {
+    margin-bottom: 100px;
+}
+
+.titlle-video_advert {
+    float: left;
+    width: 50%;
+}
+
+.celebaration-title > a{
+    float: right;
+    padding: 4px 15px;
+    border: 1px solid red;
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+.celebaration-title > a:hover {
+    text-decoration: none;
+    background: red;
+    color: white;
+
+}
+
+/*-------sale-box-----*/
+.sale-box {
+    margin-top: 50px;
+}
+
+.sale-left_background {
+    position: relative;
+    width: 100%;
+    height: 315px;
+    background: #ede91c;
+}
+
+.sale-left_inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: 16px;
+    border: 4px solid white;
+    padding-top: 140px;
+    padding-left: 30px;
+}
+
+.sale-left_inner > h4, .sale-left_inner > h1 {
+    margin: 0;
+    padding: 0;
+}
+.sale-left_inner > a{
+    padding: 10px 80px;
+    background: white;
+    font-size: larger;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.sale-right {
+    display: inline-block;
+    padding: 0 0 50px 0;
+    margin: 0;
+}
+
+.link-list {
+    width: 100%;
+    display: table;
+    border-collapse: collapse;
+    /*border: 1px solid red;*/
+}
+
+.link-list li{
+    display: table-cell;
+    border: 1px solid red;
+    padding: 10px;
+    width: 25%;
+    text-align: center;
+}
+
+.link-list a{
+    color: black;
+    font-size: larger;
+    font-weight: 600;
+}
+
+.link-list a:hover {
+    text-decoration: none;
+    color: red;
+}
+/*--------advert_more----------*/
+.advert_more {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 20px 0;
+}
+.advert-item__inner {
+    position: relative;
+    padding-left: 100px;
+}
+
+.advert-item__inner::before {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    content: "";
+    width: 80px;
+    height: 80px;
+    background: url("../img/img-general.png") -60px 0 no-repeat;
+}
+
+/*register-follow*/
+.register-follow {
+    border-bottom: 1px solid black;
+    padding-bottom: 35px;
+}
+
+.follow_us {
+    margin-top: 28px;
+}
+
+.icon-follow{
+    padding: 0;
+    padding: 0;
+    width: 35px;
+    height: 35px;
+    margin-left: 15px;
+    margin-top: 25px;
+}
+.social-link {
+    background: url("../img/img-general.png") -168px -208px no-repeat;
+    animation: animatedBackground 40s linear infinite;
+}
+
+/*#social-link:hover {*/
+    /*background: url("../img/img-general.png") -168px -242px no-repeat;*/
+/*}*/
+
+.facebook-link {
+    background: url("../img/img-general.png") 0 -165px no-repeat;
+}
+
+.youtube-link {
+    background: url("../img/img-general.png") -135px -130px no-repeat;
+}
+
+/*#facebook-link:hover {*/
+    /*background: url("../img/img-general.png") 0 -199px no-repeat;*/
+/*}*/
+
+
+/*inputEmailRegester*/
+
+#inputEmailRegester {
+    width: 55%;
+    line-height: 36px;
+    margin-left: 20px;
+}
+
+#inputEmailRegester_button {
+    height: 44px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 18px;
+    background: red;
+    color: #ede91c;
+    overflow: hidden;
+}
+
+#other-news_table td{
+    padding: 5px 15px 5px 0;
+}
+
+/*HỆ THỐNG CỬA HÀNG*/
+
+.canifa-policy_box {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 -10px 70px -10px;
+}
+
+.policy-item_inner {
+    padding: 0 10px;
+
+}
+
+.canifa-link_list {
+    list-style-type: none;
+}
+
+.canifa-link_list li{
+
+    margin: 0;
+    padding: 20px 0;
+    border-bottom: 1px solid black;
+}
+
+.canifa-link_list li a{
+    position: relative;
+    margin-left: 40px;
+    font-size: 9pt;
+    font-weight: 500;
+    color: black;
+}
+
+.canifa-link_list li a::before {
+    position: absolute;
+    content: "";
+    width: 40px;
+    height: 40px;
+    top: -5px;
+    left: -40px;
+}
+
+.canifa-link_list li a:hover {
+    text-decoration: none;
+    color: red;
+}
+
+#customer-find::before {
+    background: url("../img/img-general.png") -173px 0 no-repeat;
+}
+
+#recruitment-infor::before {
+    background: url("../img/img-general.png") -173px -55px no-repeat;
+}
+
+#canifa-blog::before {
+    background: url("../img/img-general.png") -173px -105px no-repeat;
+}
+
+#customer-survey::before {
+    background: url("../img/img-general.png") -173px -165px no-repeat;
+}
+
+#policy_and_trade::before {
+    background: url("../img/img-general.png") 0 5px  no-repeat;
+}
+
+/*-----footer_top---------*/
+.footer_top {
+    border-top: 1px solid black;
+    padding-top: 40px;
+}
+
+.link_list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.link_list > li{
+    margin: 0;
+    padding: 5px 0;
+}
+
+.link_list > li > a {
+    color: black;
+    font-size: 11pt;
+    font-weight: 500;
+}
+
+.link_list > li > a:hover {
+    text-decoration: none;
+    color: red;
+}
+
+#inputEmailRegester_button_footer {
+    height: 27px;
+    float: left;
+    margin-left: 0;
+    margin-top: 0px;
+}
+
+#inputEmailRegester_footer {
+    width: 170px;
+    float: left;
+    margin-right: 0;
+    margin-top: 1px;
+}
+
+.canifa-about_item {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/*-----------menu-bar----------------*/
+.menu-box {
+    margin: 0;
+    padding: 35px 0;
+    width: 100%;
+    background: beige;
+    border: 1px solid black;
+
+}
+
+#navigation-menu {
+    display: none;
+}
+
+.menu_catergory {
+    width: 50%;
+    padding-left: 200px;
+}
+
+.menu-box h3 {
+    margin-bottom: 20px;
+
+}
+
+.menu_new-products {
+    width: 25%;
+    height: auto;
+    padding-left: 35px;
+    margin: 0;
+    border-left: 1px solid black;
+}
+
+.menu_collection {
+    width: 25%;
+    padding-left: 35px;
+    border-left: 1px solid black;
+}
+
+.shirt-product {
+    width: 50%;
+}
+
+.trouser-product {
+    width: 50%;
+}
+
+.product-item_menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.product-item_menu > li {
+    margin: 0;
+    padding: 5px 0;
+}
+
+.product-item_menu > li > a{
+    padding: 0;
+    color: black;
+    font-size: 13pt;
+    font-weight: 500;
+}
+
+.product-item_menu > li > a:hover {
+    text-decoration: none;
+    color: red;
+}
+
+/*------------------------------------*/

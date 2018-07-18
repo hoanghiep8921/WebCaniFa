@@ -1,0 +1,276 @@
+/*header-top*/
+.header-top__inner {
+    width: 100%;
+    height: 33px;
+    border-bottom: 1px solid #8c9199;
+    padding: 10px 0 0 0;
+}
+.transfer-infor_header {
+    position: relative;
+    padding-left: 40px;
+}
+
+.transfer-infor_header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 40px;
+    height: 20px;
+    background: url("../img/img-general.png") no-repeat;
+
+}
+
+.header-top__account {
+    height: 100%;
+    /*width: 80px;*/
+    padding-left:10px;
+    text-align: right;
+    border-left: 1px solid #8c9199;
+}
+
+.header-top__support {
+    position: relative;
+    padding-left: 25px;
+    padding-right: 20px;
+}
+
+.header-top__support::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 20px;
+    height: 30px;
+    background: url("../img/img-general.png") 0 -129px no-repeat;
+
+}
+
+.header-top__recruitment {
+    padding-right: 20px;
+}
+
+.header-top__customer {
+
+    position: relative;
+    padding-left: 30px;
+    padding-right: 20px;
+}
+
+.header-top__customer::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 30px;
+    height: 30px;
+    background: url("../img/img-general.png") 0 -95px no-repeat;
+
+}
+
+
+.header-top__show-room {
+
+    position: relative;
+    padding-left: 25px;
+    padding-right: 20px;
+}
+
+.header-top__show-room::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 20px;
+    height: 30px;
+    background: url("../img/img-general.png") 0 -30px no-repeat;
+
+}
+
+.header-top__inner a {
+    color: #000000;
+    font-weight: 500;
+}
+
+.header-top__inner a:hover{
+    text-decoration: none;
+    color: red;
+}
+
+/*-------header-bottom-------------*/
+.header-bottom__inner {
+    padding: 0;
+    margin: 12px 0 0 0;
+    position: relative;
+}
+
+#canifa-logo {
+    display: inline-block;
+}
+
+.menu-bar {
+    position: absolute;
+    list-style-type: none;
+    display: inline-block;
+    top: 32px;
+    margin-left: -40px;
+
+}
+
+.menu-bar > .menu-item {
+    line-height: 40px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: inline-block;
+    border-right: 1px solid #8c9199;
+
+}
+
+
+.menu-item > a{
+    color: #000000;
+    font-weight: 600;
+    font-size: 14pt;
+    vertical-align: middle;
+}
+
+.menu-item > a:hover {
+    text-decoration: none;
+    color: red;
+}
+
+/*-----------cart-button----------------*/
+.search-box {
+    position: absolute;
+    right: 50px;
+    top: 32px;
+    margin-top: 0px;
+
+}
+
+.search-box > input {
+
+    width: 250px;
+    line-height: 34px;
+}
+
+
+.cart-button {
+    /*content: "";*/
+    top: 32px;
+    position: absolute;
+    right: 0;
+    margin-top: -6px;
+    width: 40px;
+    height: 46px;
+    background: url("../img/cart.png") no-repeat;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.cart-button:hover {
+    text-decoration: none;
+}
+
+#cart-number {
+    color: #ffffff;
+    font-size: 15pt;
+}
+
+/*-------sale information---------*/
+.sale-infomation {
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background: #1d3e72;
+    padding-left: 350px;
+    margin-top: 4px;
+    /*text-align: center;*/
+}
+
+.sale-desc{
+    vertical-align: middle;
+    color: #ffffff;
+    font-size: 15pt;
+}
+
+.sale-deadtime {
+    display: inline;
+    background: #ffffff;
+    padding: 5px;
+    height: auto;
+    margin: 0;
+    color: red;
+    font-size: 15pt;
+}
+
+/*-----------------------*/
+
+/*-----------menu-bar----------------*/
+.menu-box {
+    margin: 0;
+    padding: 35px 0;
+    width: 100%;
+    background: beige;
+    border: 1px solid black;
+
+}
+
+#navigation-menu {
+    display: none;
+}
+
+.menu_catergory {
+    width: 50%;
+    padding-left: 200px;
+}
+
+.menu-box h3 {
+    margin-bottom: 20px;
+
+}
+
+.menu_new-products {
+    width: 25%;
+    height: auto;
+    padding-left: 35px;
+    margin: 0;
+    border-left: 1px solid black;
+}
+
+.menu_collection {
+    width: 25%;
+    padding-left: 35px;
+    border-left: 1px solid black;
+}
+
+.shirt-product {
+    width: 50%;
+}
+
+.trouser-product {
+    width: 50%;
+}
+
+.product-item_menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.product-item_menu > li {
+    margin: 0;
+    padding: 5px 0;
+}
+
+.product-item_menu > li > a{
+    padding: 0;
+    color: black;
+    font-size: 13pt;
+    font-weight: 500;
+}
+
+.product-item_menu > li > a:hover {
+    text-decoration: none;
+    color: red;
+}
