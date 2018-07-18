@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Admin</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- MetisMenu CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/metisMenu.min.css}"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/sb-admin-2.css}"/>
+
+    <!-- Morris Charts CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/morris.css}"/>
+
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <style>
+
+
+    </style>
+</head>
+
+<body ng-controller="homeCtrl">
+
+<div id="wrapper">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0;">
+        <div th:replace="fragments/common/header :: header_admin"></div>
+        <div th:replace="fragments/common/sidebar :: sidebar_admin"></div>
+    </nav>
+
+    <div id="page-wrapper" style="margin-top: 50px;">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Trang trủ</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-comments fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge" th:text="${countProduct}"></div>
+                                <div>Số sản phẩm</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#">
+                        <div class="panel-footer">
+                            <span class="pull-left">Chi tiết</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="panel panel-green">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-tasks fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge" th:text="${countCategory}"></div>
+                                <div>Danh mục</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#">
+                        <div class="panel-footer">
+                            <span class="pull-left">Chi tiết</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="panel panel-yellow">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-shopping-cart fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge" th:text="${countOrder}"></div>
+                                <div>Hóa đơn</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#">
+                        <div class="panel-footer">
+                            <span class="pull-left">Chi tiết</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-bar-chart-o fa-fw"></i> Thống kê
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                    Tùy chọn
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                    <li><a href="#">Sắp xếp</a>
+                                    </li>
+                                    <li><a href="#">Lọc</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body" style="padding: 0px">
+                        <canvas id="bar-chart" width="600" height="400"></canvas>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-bar-chart-o fa-fw"></i> Thống kê
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                    Tùy chọn
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                    <li><a href="#">Sắp xếp</a>
+                                    </li>
+                                    <li><a href="#">Lọc</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <canvas id="oilChart" width="600" height="400"></canvas>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-clock-o fa-fw"></i> Sản phẩm bán chạy
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Số lượng bán</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="product in productHot">
+                                <td>{{product.id}}</td>
+                                <td>{{product.name}}</td>
+                                <td>{{product.quantity}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-8 -->
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-bell fa-fw"></i> Thông báo
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="list-group">
+                            <a href="admin/order" class="list-group-item">
+                                <i class="fa fa-comment fa-fw"></i> Hóa đơn mới
+                                <span class="badge badge-danger" th:text="${countOrderCreated}"></span>
+                            </a>
+                            <a href="#" class="list-group-item">
+                                <i class="fa fa-twitter fa-fw"></i> Người dùng mới
+                                <span class="badge badge-danger" th:text="${countOrderCreated}"></span>
+                            </a>
+                            <a href="#" class="list-group-item">
+                                <i class="fa fa-envelope fa-fw"></i> Tin nhắn mới
+                                <span class="badge badge-danger" th:text="${countOrderCreated}"></span>
+                            </a>
+                            <a href="#" class="list-group-item">
+                                <i class="fa fa-tasks fa-fw"></i> New Task
+                                <span class="pull-right text-muted small"><em>43 minutes ago</em>
+                                    </span>
+                            </a>
+                            <a href="#" class="list-group-item">
+                                <i class="fa fa-upload fa-fw"></i> Máy chủ khởi động lại
+                                <span class="pull-right text-muted small"><em>11:32 AM</em>
+                                    </span>
+                            </a>
+
+                        </div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-bar-chart-o fa-fw"></i> Thông kê danh số
+                    </div>
+                    <div class="panel-body">
+                        <div id="morris-donut-chart"></div>
+                        <a href="#" class="btn btn-default btn-block">Chi tiết</a>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+                <div class="chat-panel panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-comments fa-fw"></i> Chat
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-chevron-down"></i>
+                            </button>
+                            <ul class="dropdown-menu slidedown">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-refresh fa-fw"></i> Refresh
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-check-circle fa-fw"></i> Available
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-times fa-fw"></i> Busy
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-clock-o fa-fw"></i> Away
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-sign-out fa-fw"></i> Sign Out
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <ul class="chat">
+                            <li class="left clearfix">
+                                    <span class="chat-img pull-left">
+                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
+                                    </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <strong class="primary-font">Jack Sparrow</strong>
+                                        <small class="pull-right text-muted">
+                                            <i class="fa fa-clock-o fa-fw"></i> 12 mins ago
+                                        </small>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="right clearfix">
+                                    <span class="chat-img pull-right">
+                                        <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" />
+                                    </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <small class=" text-muted">
+                                            <i class="fa fa-clock-o fa-fw"></i> 13 mins ago</small>
+                                        <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="left clearfix">
+                                    <span class="chat-img pull-left">
+                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
+                                    </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <strong class="primary-font">Jack Sparrow</strong>
+                                        <small class="pull-right text-muted">
+                                            <i class="fa fa-clock-o fa-fw"></i> 14 mins ago</small>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="right clearfix">
+                                    <span class="chat-img pull-right">
+                                        <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" />
+                                    </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <small class=" text-muted">
+                                            <i class="fa fa-clock-o fa-fw"></i> 15 mins ago</small>
+                                        <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.panel-body -->
+                    <div class="panel-footer">
+                        <div class="input-group">
+                            <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                            <span class="input-group-btn">
+                                    <button class="btn btn-warning btn-sm" id="btn-chat">
+                                        Send
+                                    </button>
+                                </span>
+                        </div>
+                    </div>
+                    <!-- /.panel-footer -->
+                </div>
+                <!-- /.panel .chat-panel -->
+            </div>
+            <!-- /.col-lg-4 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /#page-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<script th:inline="javascript">
+    var listCategory=/*[[${listCategory}]]*/ 'default';
+    var productHot=/*[[${productHot}]]*/ 'default';
+    var pricebyMonth2017 = /*[[${totalPrice2017}]]*/ 'default';
+    var pricebyMonth2018 = /*[[${totalPrice2018}]]*/ 'default';
+    new Chart(document.getElementById("bar-chart"), {
+        type: 'bar',
+        data: {
+            labels: ["Tháng 1", "Tháng 2","Tháng 3","Tháng 4","Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng 10","Tháng 11","Tháng 12",],
+            datasets: [
+                {
+                    label: "Money ($)",
+                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850", "#8e5ea2","#3cba9f","#e8c3b9","#c45850", "#8e5ea2","#3cba9f","#e8c3b9"],
+                    data: pricebyMonth2018
+                }
+            ]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Tổng doanh thu hàng tháng năm 2018'
+            }
+        }
+    });
+
+
+    var oilCanvas = document.getElementById("oilChart");
+
+    Chart.defaults.global.defaultFontFamily = "Lato";
+    Chart.defaults.global.defaultFontSize = 18;
+
+    var oilData = {
+        labels: [
+            "Tháng 1","Tháng 2","Tháng 3","Tháng 4",
+            "Tháng 5","Tháng 6","Tháng 7","Tháng 8",
+            "Tháng 9","Tháng 10","Tháng 11","Tháng 12",
+        ],
+        datasets: [
+            {
+                data: pricebyMonth2017,
+                backgroundColor: [
+                    "#FF6384",
+                    "#63FF84",
+                    "#84FF63",
+                    "#8463FF",
+                    "#6384FF",
+                    "#FF6384",
+                    "#63FF84",
+                    "#84FF63",
+                    "#8463FF",
+                    "#6384FF",
+                    "#6384FF",
+                    "#6384FF"
+                ]
+            }]
+    };
+
+    var pieChart = new Chart(oilCanvas, {
+        type: 'bar',
+        data: oilData,
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Tổng doanh thu hàng tháng năm 2017'
+            }
+        }
+    });
+
+</script>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="../static/js/metisMenu.min.js"></script>
+
+<!-- Morris Charts JavaScript -->
+<script src="../static/js/raphael.min.js"></script>
+<script src="../static/js/morris.min.js"></script>
+<script src="../static/js/morris-data.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="../static/js/sb-admin-2.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<script>
+    var app = angular.module('myApp', []) ;
+
+    app.controller('homeCtrl', function($scope, $http) {
+        $scope.productHot=productHot;
+        $scope.listCategory=listCategory;
+
+        $scope.detailProduct=function(){
+            window.location.href="http://localhost:8080/admin/list-product?pageNumber=1";
+        };
+        $scope.detailOrder=function(){
+            window.location.href="http://localhost:8080/admin/order";
+        };
+        $scope.detailNotifi=function(){
+            window.location.href="http://localhost:8080/admin/notification";
+        };
+        $scope.thongke=function(){
+            window.location.href="http://localhost:8080/admin/thongke";
+        };
+        $scope.sale=function(){
+            window.location.href="http://localhost:8080/admin/sale";
+        };
+        $scope.detailUser=function(){
+            window.location.href="http://localhost:8080/admin/employee";
+        };
+    });
+</script>
+</body>
+
+</html>

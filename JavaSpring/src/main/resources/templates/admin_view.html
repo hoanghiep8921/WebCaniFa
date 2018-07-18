@@ -1,0 +1,485 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Equinox Admin Panel - Dashboard</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" th:href="@{/css/style.css}"/>
+<link rel="stylesheet" th:href="@{/css/dashboard.css}"/>
+<link rel="stylesheet" th:href="@{/css/superfish.css}" />
+<link rel="stylesheet" th:href="@{/css/horizontal_slider.css}"/>
+<link rel="stylesheet" th:href="@{/css/tooltip.css}"/>
+
+
+</head>
+<body>
+<div id="container">
+  <div id="preloadDefaultImages"></div>
+  <!--[if !IE]>start header<![endif]-->
+  <div id="header">
+    <div class="content_all">
+      <div class="header-left"><img src="images/logo.png" width="268px" height="56px" alt="logo"/></div>
+      <div class="header-right"> <span class="welcome">Welcome <strong>Administrator</strong></span> <span class="links"><a href="#" class="my-account" >My Account</a> | <a href="#" >Log out</a></span> <span class="links"><a href="#" class="new-message" >4 new messages</a></span> <span class="time-ip">Server time : 6:45 AM<br />
+        Last login ip : 192.168.0.15</span> </div>
+    </div>
+  </div>
+  <!--[if !IE]>end header<![endif]-->
+  <!--[if !IE]>start main menu<![endif]-->
+  <div id="menu_row">
+    <div class="content_all">
+      <ul class="sf-menu">
+        <li><a href="#"  class="active" ><span><span>Dashboard</span></span></a></li>
+        <li><a href="#"  ><span><span>Products</span></span></a></li>
+        <li><a href="#"   ><span><span>Orders</span></span></a></li>
+        <li><a href="#"  ><span><span>Submenu demo</span></span></a>
+          <ul>
+            <li class="first_item"><span><a href="#" >Photos of our Office</a></span></li>
+            <li><span><a href="#" >Our Best Work Compilation</a></span></li>
+            <li><span><a href="#" >Travel Photos 2008</a></span></li>
+            <li class="submenu"><span><a href="#" >Travel Photos 2009</a></span>
+              <ul>
+                <li class="first_item"><span><a href="#" >Photos of our Office</a></span></li>
+                <li><span><a href="#" >Our Best Work Compilation</a></span></li>
+                <li><span><a href="#" >Travel Photos 2008</a></span></li>
+                <li><span><a href="#" >August Party in New Orleans</a></span></li>
+                <li><span><a href="#" >Another menu item</a></span></li>
+                <li><span><a href="#" >Last item in the menu</a></span></li>
+              </ul>
+            </li>
+            <li><span><a href="#" >August Party in New Orleans</a></span></li>
+            <li><span><a href="#" >Another menu item</a></span></li>
+            <li><span><a href="#" >Last item in the menu</a></span></li>
+          </ul>
+        </li>
+        <li class="last_item"><a href="#"  ><span><span>seo settings</span></span></a></li>
+      </ul>
+      <div class="search">
+        <form name="searchForm" action="http://www.oxylusflash.com/themeforest/27/search.php" method="get" >
+          <input type="text" class="search-text" name="searchtext" value="" id="searchtext"/>
+          <input type="submit" class="search-submit" name="submit" value="GO" id="submit"/>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div id="content">
+    <div class="content_all">
+      <div class="content-outer">
+        <div class="content-inner">
+          <div class="title_border">
+            <h1>Quick Tasks</h1>
+            <div class="customize">
+              <ul>
+                <li><a href="#"><span><span>Customize</span></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <ul id="slider_horizontal" class="jcarousel-skin-horizontal">
+            <li><a href="#" class="d1" title="Create, edit and set permissions for the folders the users can upload their files to."><span>User Management Tools</span></a></li>
+            <li><a href="#" class="d2" title="Create, edit and set permissions for the folders the users can upload their files to."><span>Setup upload folders</span></a></li>
+            <li><a href="#" class="d3" title="Create, edit and set permissions for the folders the users can upload their files to."><span>Manage photo galleries</span></a></li>
+            <li><a href="#" class="d4" title="Create, edit and set permissions for the folders the users can upload their files to."><span>Change site templates</span></a></li>
+            <li><a href="#" class="d5" title="Create, edit and set permissions for the folders the users can upload their files to."><span>SEO Tools and Settings</span></a></li>
+            <li><a href="#" class="d6" title="Create, edit and set permissions for the folders the users can upload their files to."><span>Email Settings and Templates</span></a></li>
+            <li><a href="#" class="d7" title="Create, edit and set permissions for the folders the users can upload their files to."><span>Homepage and Static Pages</span></a></li>
+            <li><a href="#" class="d8" title="Create, edit and set permissions for the folders the users can upload their files to."><span>Website Security Settings</span></a></li>
+            <li><a href="#" class="d9" title="Create, edit and set permissions for the folders the users can upload their files to."><span>Printable Pages Template</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="content-outer">
+        <div class="content-inner">
+          <div class="title_border_nopadd">
+            <h1>Table Template</h1>
+            <div class="dash-sub-menu">
+              <ul>
+                <li><a href="#"  class="active"><span><span>Products</span></span></a></li>
+                <li><a href="#"  ><span><span>Pending</span></span></a></li>
+                <li><a href="#"  ><span><span>Shipped</span></span></a></li>
+                <li><a href="#"  ><span><span>Discounts</span></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="before-after-table">
+              <p style="margin-top: 10px;">
+                  <button class="btn btn-primary" id="btn-new-product">Insert new product</button>
+              </p>
+            
+            <ul id="nav_top" class="nav">
+              <li ><a href="#" class="change">Set Status Approved</a>
+                <ul>
+                  <li><a href="#">General Inquiry</a> </li>
+                  <li><a href="#">Programming </a> </li>
+                  <li><a href="#">Website Quote Request</a> </li>
+                  <li><a href="#">Feedback</a> </li>
+                  <li><a href="#">Help and Support</a> </li>
+                </ul>
+              </li>
+            </ul><strong class="apply-action">Apply Action :</strong>
+          </div>
+          <form name="frm-checkboxes" action="#" method="post">
+          <table cellpadding="0" cellspacing="0" width="100%">
+            <tbody>
+              <tr>
+                <th class="check"></th>
+                <th class="photo">Photo</th>
+                <th class="item_name"><a href="#" title="Sort by name">Item name</a></th>
+                <th class="price"><a href="#" title="Sort by price descending." class="tooltip">Price</a></th>
+                <th class="status"><a href="#" title="Sort by status">Status</a></th>
+                <th class="move">Move</th>
+                <th class="quickaction">Quick Actions</th>
+              </tr>
+              <tr th:each="product : ${vm.getListPagingProducts()}">
+                <td class="check"><input type="checkbox" name="check_selected[]"  /></td>
+                <td ><a href="#" class="img_small" title="640x480, JPG"><img th:src="${product.getImage()}" width="69px" height="37px"  alt="product image" /></a></td>
+                <td class="item_name"><a href="#" title="" th:text="${product.getName()}"></a></td>
+                <td class="price" >$30</td>
+                <td class="status"><span class="approved">Approved</span></td>
+                <td class="move"><ul>
+                    <li><a href="#" class="move1" title="Move item up"></a></li>
+                    <li><a href="#" class="move2" title="Move item down"></a></li>
+                    <li><a href="#" class="move3" title="Move item to the top"></a></li>
+                    <li><a href="#" class="move4" title="Move item to the bottom"></a></li>
+                  </ul></td>
+                <td class="quickaction"><ul>
+                    <li><a href="#"  class="view"><span><span>View</span></span></a></li>
+                    <li><a href="#"  class="edit"><span><span>Edit</span></span></a></li>
+                    <li><a href="#"  class="delete"><span><span>Delete</span></span></a></li>
+                  </ul></td>
+              </tr>
+              <tr>
+                <td class="check"><input type="checkbox" name="check_selected[]"  /></td>
+                <td ><a href="#" class="img_small" title="640x480, JPG"><img src="images/product-image.jpg" width="69px" height="37px"  alt="product image" /></a></td>
+                <td class="item_name"><a href="#" title="">Flash Website Templates Package</a></td>
+                <td class="price">$30</td>
+                <td class="status"><span class="pending">Pending</span></td>
+                <td class="move"><ul>
+                    <li><a href="#" class="move1" title="Move item up"></a></li>
+                    <li><a href="#" class="move2" title="Move item down"></a></li>
+                    <li><a href="#" class="move3" title="Move item to the top"></a></li>
+                    <li><a href="#" class="move4" title="Move item to the bottom"></a></li>
+                  </ul></td>
+                <td class="quickaction"><ul>
+                    <li><a href="#"  class="view"><span><span>View</span></span></a></li>
+                    <li><a href="#"  class="edit"><span><span>Edit</span></span></a></li>
+                    <li><a href="#"  class="delete"><span><span>Delete</span></span></a></li>
+                  </ul></td>
+              </tr>
+              <tr>
+                <td class="check"><input type="checkbox" name="check_selected[]"  /></td>
+                <td ><a href="#" class="img_small" title="640x480, JPG"><img src="images/product-image.jpg" width="69px" height="37px"  alt="product image" /></a></td>
+                <td class="item_name"><a href="#" title="">Flash Website Templates Package</a></td>
+                <td class="price">$30</td>
+                <td class="status"><span class="approved">Approved</span></td>
+                <td class="move"><ul>
+                    <li><a href="#" class="move1" title="Move item up"></a></li>
+                    <li><a href="#" class="move2" title="Move item down"></a></li>
+                    <li><a href="#" class="move3" title="Move item to the top"></a></li>
+                    <li><a href="#" class="move4" title="Move item to the bottom"></a></li>
+                  </ul></td>
+                <td class="quickaction"><ul>
+                    <li><a href="#"  class="view"><span><span>View</span></span></a></li>
+                    <li><a href="#"  class="edit"><span><span>Edit</span></span></a></li>
+                    <li><a href="#"  class="delete"><span><span>Delete</span></span></a></li>
+                  </ul></td>
+              </tr>
+              <tr>
+                <td class="check"><input type="checkbox" name="check_selected[]"  /></td>
+                <td ><a href="#" class="img_small" title="640x480, JPG"><img src="images/product-image.jpg" width="69px" height="37px"  alt="product image" /></a></td>
+                <td class="item_name"><a href="#" title="">Flash Website Templates Package</a></td>
+                <td class="price">$30</td>
+                <td class="status"><span class="pending">Pending</span></td>
+                <td class="move"><ul>
+                    <li><a href="#" class="move1" title="Move item up"></a></li>
+                    <li><a href="#" class="move2" title="Move item down"></a></li>
+                    <li><a href="#" class="move3" title="Move item to the top"></a></li>
+                    <li><a href="#" class="move4" title="Move item to the bottom"></a></li>
+                  </ul></td>
+                <td class="quickaction"><ul>
+                    <li><a href="#"  class="view"><span><span>View</span></span></a></li>
+                    <li><a href="#"  class="edit"><span><span>Edit</span></span></a></li>
+                    <li><a href="#"  class="delete"><span><span>Delete</span></span></a></li>
+                  </ul></td>
+              </tr>
+              <tr>
+                <td class="check"><input type="checkbox" name="check_selected[]"  /></td>
+                <td ><a href="#" class="img_small" title="640x480, JPG"><img src="images/product-image.jpg" width="69px" height="37px"  alt="product image" /></a></td>
+                <td class="item_name"><a href="#" title="">Flash Website Templates Package</a></td>
+                <td class="price">$30</td>
+                <td class="status"><span class="approved">Approved</span></td>
+                <td class="move"><ul>
+                    <li><a href="#" class="move1" title="Move item up"></a></li>
+                    <li><a href="#" class="move2" title="Move item down"></a></li>
+                    <li><a href="#" class="move3" title="Move item to the top"></a></li>
+                    <li><a href="#" class="move4" title="Move item to the bottom"></a></li>
+                  </ul></td>
+                <td class="quickaction"><ul>
+                    <li><a href="#"  class="view"><span><span>View</span></span></a></li>
+                    <li><a href="#"  class="edit"><span><span>Edit</span></span></a></li>
+                    <li><a href="#"  class="delete"><span><span>Delete</span></span></a></li>
+                  </ul></td>
+              </tr>
+              <tr>
+                <td class="check"><input type="checkbox" name="check_selected[]"  /></td>
+                <td ><a href="#" class="img_small" title="640x480, JPG"><img src="images/product-image.jpg" width="69px" height="37px"  alt="product image" /></a></td>
+                <td class="item_name"><a href="#" title="">Flash Website Templates Package</a></td>
+                <td class="price">$30</td>
+                <td class="status"><span class="pending">Pending</span></td>
+                <td class="move"><ul>
+                    <li><a href="#" class="move1" title="Move item up"></a></li>
+                    <li><a href="#" class="move2" title="Move item down"></a></li>
+                    <li><a href="#" class="move3" title="Move item to the top"></a></li>
+                    <li><a href="#" class="move4" title="Move item to the bottom"></a></li>
+                  </ul></td>
+                <td class="quickaction"><ul>
+                    <li><a href="#"  class="view"><span><span>View</span></span></a></li>
+                    <li><a href="#"  class="edit"><span><span>Edit</span></span></a></li>
+                    <li><a href="#"  class="delete"><span><span>Delete</span></span></a></li>
+                  </ul></td>
+              </tr>
+              <tr>
+                <td class="check"><input type="checkbox" name="check_selected[]"  /></td>
+                <td ><a href="#" class="img_small" title="640x480, JPG"><img src="images/product-image.jpg" width="69px" height="37px"  alt="product image" /></a></td>
+                <td class="item_name"><a href="#" title="">Flash Website Templates Package</a></td>
+                <td class="price">$30</td>
+                <td class="status"><span class="approved">Approved</span></td>
+                <td class="move"><ul>
+                    <li><a href="#" class="move1" title="Move item up"></a></li>
+                    <li><a href="#" class="move2" title="Move item down"></a></li>
+                    <li><a href="#" class="move3" title="Move item to the top"></a></li>
+                    <li><a href="#" class="move4" title="Move item to the bottom"></a></li>
+                  </ul></td>
+                <td class="quickaction"><ul>
+                    <li><a href="#"  class="view"><span><span>View</span></span></a></li>
+                    <li><a href="#"  class="edit"><span><span>Edit</span></span></a></li>
+                    <li><a href="#"  class="delete"><span><span>Delete</span></span></a></li>
+                  </ul></td>
+              </tr>
+              <tr>
+                <td class="check"><input type="checkbox" name="check_selected[]"  /></td>
+                <td > no photo</td>
+                <td class="item_name"><a href="#" title="">Smaller row with no photo</a></td>
+                <td class="price">$90</td>
+                <td class="status"><span class="pending">Pending</span></td>
+                <td class="move"><ul>
+                    <li><a href="#" class="move1" title="Move item up"></a></li>
+                    <li><a href="#" class="move2" title="Move item down"></a></li>
+                    <li><a href="#" class="move3" title="Move item to the top"></a></li>
+                    <li><a href="#" class="move4" title="Move item to the bottom"></a></li>
+                  </ul></td>
+                <td class="quickaction"><ul>
+                    <li><a href="#"  class="view"><span><span>View</span></span></a></li>
+                    <li><a href="#"  class="edit"><span><span>Edit</span></span></a></li>
+                    <li><a href="#"  class="delete"><span><span>Delete</span></span></a></li>
+                  </ul></td>
+              </tr>
+              <tr>
+                <td class="check"><input type="checkbox" name="check_selected[]"  /></td>
+                <td> no photo</td>
+                <td class="item_name"><a href="#" title="">Smaller row with no photo</a></td>
+                <td class="price">$30</td>
+                <td class="status"><span class="pending">Pending</span></td>
+                <td class="move"><ul>
+                    <li><a href="#" class="move1" title="Move item up"></a></li>
+                    <li><a href="#" class="move2" title="Move item down"></a></li>
+                    <li><a href="#" class="move3" title="Move item to the top"></a></li>
+                    <li><a href="#" class="move4" title="Move item to the bottom"></a></li>
+                  </ul></td>
+                <td class="quickaction"><ul>
+                    <li><a href="#"  class="view"><span><span>View</span></span></a></li>
+                    <li><a href="#"  class="edit"><span><span>Edit</span></span></a></li>
+                    <li><a href="#"  class="delete"><span><span>Delete</span></span></a></li>
+                  </ul></td>
+              </tr>
+              <tr>
+                <td class="check"><input type="checkbox" name="check_selected[]"  /></td>
+                <td > no photo</td>
+                <td class="item_name"><a href="#" title="">Smaller row with no photo</a></td>
+                <td class="price">$30</td>
+                <td class="status"><span class="approved">Approved</span></td>
+                <td class="move"><ul>
+                    <li><a href="#" class="move1" title="Move item up"></a></li>
+                    <li><a href="#" class="move2" title="Move item down"></a></li>
+                    <li><a href="#" class="move3" title="Move item to the top"></a></li>
+                    <li><a href="#" class="move4" title="Move item to the bottom"></a></li>
+                  </ul></td>
+                <td class="quickaction"><ul>
+                    <li><a href="#"  class="view"><span><span>View</span></span></a></li>
+                    <li><a href="#"  class="edit"><span><span>Edit</span></span></a></li>
+                    <li><a href="#"  class="delete"><span><span>Delete</span></span></a></li>
+                  </ul></td>
+              </tr>
+              <tr>
+                <td class="check"><input type="checkbox" name="check_selected[]"  /></td>
+                <td > no photo</td>
+                <td class="item_name"><a href="#" title="">Smaller row with no photo</a></td>
+                <td class="price">$30</td>
+                <td class="status"><span class="pending">Pending</span></td>
+                <td class="move"><ul>
+                    <li><a href="#" class="move1" title="Move item up"></a></li>
+                    <li><a href="#" class="move2" title="Move item down"></a></li>
+                    <li><a href="#" class="move3" title="Move item to the top"></a></li>
+                    <li><a href="#" class="move4" title="Move item to the bottom"></a></li>
+                  </ul></td>
+                <td class="quickaction"><ul>
+                    <li><a href="#"  class="view"><span><span>View</span></span></a></li>
+                    <li><a href="#"  class="edit"><span><span>Edit</span></span></a></li>
+                    <li><a href="#"  class="delete"><span><span>Delete</span></span></a></li>
+                  </ul></td>
+              </tr>
+              <tr>
+                <td class="check"><input type="checkbox" name="check_selected[]"  /></td>
+                <td > no photo</td>
+                <td class="item_name"><a href="#" title="">Smaller row with no photo</a></td>
+                <td class="price">$60</td>
+                <td class="status"><span class="pending">Pending</span></td>
+                <td class="move"><ul>
+                    <li><a href="#" class="move1" title="Move item up"></a></li>
+                    <li><a href="#" class="move2" title="Move item down"></a></li>
+                    <li><a href="#" class="move3" title="Move item to the top"></a></li>
+                    <li><a href="#" class="move4" title="Move item to the bottom"></a></li>
+                  </ul></td>
+                <td class="quickaction"><ul>
+                    <li><a href="#"  class="view"><span><span>View</span></span></a></li>
+                    <li><a href="#"  class="edit"><span><span>Edit</span></span></a></li>
+                    <li><a href="#"  class="delete"><span><span>Delete</span></span></a></li>
+                  </ul></td>
+              </tr>
+            </tbody>
+            
+          </table></form>
+          <div class="before-after-table">
+            <ul class="select_all">
+              <li><a href="#" title=""><span><span><span class="plus">select all</span></span></span></a></li>
+              <li><a href="#" title=""><span><span><span class="minus">deselect all</span></span></span></a></li>
+            </ul>
+            
+            <ul id="nav_bottom" class="nav">
+              <li ><a href="#" class="change">Set Status Approved</a>
+                <ul>
+                  <li><a href="#">General Inquiry</a> </li>
+                  <li><a href="#">Programming </a> </li>
+                  <li><a href="#">Website Quote Request</a> </li>
+                  <li><a href="#">Feedback</a> </li>
+                  <li><a href="#">Help and Support</a> </li>
+                </ul>
+              </li>
+            </ul><strong class="apply-action">Apply Action :</strong>
+          </div>
+        </div>
+      </div>
+      <div class="pagination">
+            <div class="prev_link_inactiv"> <a href="#">Prev Page</a> </div>
+            <div class="middle_link"> <span><a href="#" class="active">1</a></span> <span><a href="#" >2</a></span> <span><a href="#">3</a></span> <span class="dots">...</span> <span><a href="#">98</a></span> <span><a href="#">99</a></span> <span><a href="#">100</a></span> <span><a href="#">101</a></span> </div>
+            <div class="next_link_activ"> <a href="#">Next Page</a> </div>
+          </div>
+       <br style="clear:left;"/>
+    </div>
+    <br style="clear:left;"/>
+  </div>
+  <br style="clear:left;"/>
+  <div id="footer">
+    <div class="content_all">
+      <div class="footer_left">&copy;2009 Equinox. All rights reserved.<a href="#" >Admin Build Information</a></div>
+      <div class="footer_right">
+        <ul>
+          <li><a href="#" class="active"><span><span>DASHBOARD</span></span></a></li>
+          <li><a href="#" ><span><span>ADVANCED SEARCH</span></span></a></li>
+          <li><a href="#" ><span><span>ADMIN MAP</span></span></a></li>
+          <li><a href="#" ><span><span>ADMIN HELP</span></span></a></li>
+          <li class="last"><a href="#" ><span><span>FAQS</span></span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="modal-create-product" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Product info</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="img-select-block margin-bottom-15">
+                    <label>Product image</label><br/>
+                    <img id="preview-product-img" th:src="@{/img/default-img.png}" />
+                    <input type='file' id="input-select-img-product" />
+                </div>
+
+                <div class="form-group margin-bottom-15">
+                    <label>Product name:</label>
+                    <input type="text" class="form-control" id="input-product-name">
+                </div>
+
+                <div class="form-group margin-bottom-15">
+                    <div class="form-group">
+                        <label for="product-category">Category</label>
+                        <select class="form-control" id="product-category">
+                            <option th:each="category : ${vm.getListPagingCategory()}" th:value="${category.getId()}" th:text="${category.getName()}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group margin-bottom-15">
+                    <label>Product description:</label>
+                    <textarea type="text" class="form-control" id="input-product-desc"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Product created date:</label>
+                    <div class='input-group date' id='datepicker-created-date-product'>
+                        <input type='text' class="form-control" />
+                        <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    </div>
+                </div>
+
+                <button class="btn btn-default btn-save-product">Save product</button>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    var message = /*[[${total}]]*/ 'default';
+    console.log(message);
+
+    /*]]>*/
+</script>
+<script>
+    new Chart(document.getElementById("pie-chart"), {
+        type: 'pie',
+        data: {
+            labels: [" Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
+            datasets: [{
+                label: "Population (millions)",
+                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                data: [2345,5267,734,784,433]
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Predicted world population (millions) in 2050'
+            }
+        }
+    });
+</script>
+<script type="text/javascript" th:src="@{/js/jquery-1.3.2.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/superfish.js}"></script>
+<script type="text/javascript" th:src="@{/js/hoverIntent.js}"></script>
+<script type="text/javascript" th:src="@{/js/tooltip.js}"></script>
+
+</body>
+
+<!-- Mirrored from www.oxylusflash.com/themeforest/27/ by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 27 Nov 2010 07:46:29 GMT -->
+</html>

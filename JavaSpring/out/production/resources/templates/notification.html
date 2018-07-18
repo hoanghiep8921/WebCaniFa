@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin Notification</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/metisMenu.min.css}"/>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/sb-admin-2.css}"/>
+    <!-- Morris Charts CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/morris.css}"/>
+</head>
+<body>
+<div id="wrapper" ng-app="myApp" ng-controller="homeCtrl">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0;">
+        <div th:replace="fragments/common/header :: header_admin"></div>
+        <div th:replace="fragments/common/sidebar :: sidebar_admin"></div>
+    </nav>
+    <div id="page-wrapper" style="margin-top: 50px;">
+        <section>
+            <br>
+            <p style="margin-top: 10px;">
+                <button class="btn btn-primary" id="btn-new-product">Thông báo mới</button>
+            </p>
+
+            <button class="btn btn-success" ng-click="setTab('user')">Cá nhân</button>
+            <button class="btn btn-information" ng-click="setTab('role')">Nhóm</button>
+
+            <form  ng-show=" isSelected('user')"  class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" >Tiêu đề:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  ng-model="notifi.code" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" >Nội dung :</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" rows="5"  ng-model="notifi.content"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Tên người dùng:</label>
+                    <div class="col-sm-10">
+                        <select ng-model="userid" ng-options="y.name for y in listUser" >
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default" ng-click="createNotifi()">Tạo thông báo</button>
+                    </div>
+                </div>
+            </form>
+
+            <form ng-show=" isSelected('role')"  class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" >Tiêu đề:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  ng-model="notification.code" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" >Nội dung :</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" rows="5"  ng-model="notification.content"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Nhóm :</label>
+                    <div class="col-sm-10">
+                        <select ng-model="notification.role" ng-options="y for y in listUserRole" >
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default" ng-click="createNotification()">Tạo thông báo</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+    </div>
+    <!-- /#page-wrapper -->
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="../static/js/metisMenu.min.js"></script>
+
+<!-- Morris Charts JavaScript -->
+<script src="../static/js/raphael.min.js"></script>
+<script src="../static/js/morris.min.js"></script>
+<script src="../static/js/morris-data.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="../static/js/sb-admin-2.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<script>
+    var app = angular.module('myApp', []) ;
+    app.controller('homeCtrl', function($scope, $http) {
+        $scope.detailProduct=function(){
+            window.location.href="http://localhost:8080/admin/list-product?pageNumber=1";
+        };
+        $scope.detailOrder=function(){
+            window.location.href="http://localhost:8080/admin/order";
+        };
+        $scope.detailNotifi=function(){
+            window.location.href="http://localhost:8080/admin/notification";
+        };
+        $scope.thongke=function(){
+            window.location.href="http://localhost:8080/admin/thongke";
+        };
+        $scope.sale=function(){
+            window.location.href="http://localhost:8080/admin/sale";
+        };
+        $scope.detailUser=function(){
+            window.location.href="http://localhost:8080/admin/employee";
+        };
+        $scope.notifi={};
+        $scope.notification={};
+
+        $scope.tab = 'user';
+
+        $scope.setTab = function (tab) {
+            $scope.tab = tab;
+        };
+        $scope.isSelected = function (tab) {
+            return $scope.tab === tab;
+        }
+        $http.get('http://localhost:8080/api/user/getUserAll').then(function(response) {
+
+            $scope.listUser=response.data.data;
+            console.log($scope.listUser);
+        });
+
+        $http.get('http://localhost:8080/api/user/getRole').then(function(response) {
+
+            $scope.listUserRole=response.data.data;
+            console.log($scope.listUserRole);
+        });
+
+
+        $scope.createNotifi=function(){
+            var config={
+                dataType: 'json',
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            };
+            $scope.notifi.userId = $scope.userid.id;
+            var dataPost = angular.toJson($scope.notifi, true);
+            console.log(dataPost);
+
+                $http.post('http://localhost:8080/api/notification/create-notification-user',dataPost,config).then(function(response) {
+                    toastr.success('Đã tạo thông báo thành công !');
+                });
+
+        };
+
+        $scope.createNotification=function(){
+            var config={
+                dataType: 'json',
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            };
+
+            var dataPost = angular.toJson($scope.notification, true);
+            console.log(dataPost);
+
+                $http.post('http://localhost:8080/api/notification/create-notification-listUser',dataPost,config).then(function(response) {
+                    toastr.success('Đã tạo thông báo thành công !');
+                });
+
+        };
+
+    });
+</script>
+</body>
+</html>

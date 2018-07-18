@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Admin</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <!-- MetisMenu CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/metisMenu.min.css}"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/sb-admin-2.css}"/>
+
+    <!-- Morris Charts CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/morris.css}"/>
+
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+
+
+    </style>
+</head>
+<body ng-app="myApp" ng-controller="orderCtrl">
+<div id="wrapper">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0;">
+        <div th:replace="fragments/common/header :: header_admin"></div>
+        <div th:replace="fragments/common/sidebar :: sidebar_admin"></div>
+    </nav>
+
+    <div id="page-wrapper" style="margin-top: 50px;">
+        <div>
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Mã khuyễn mãi</th>
+                    <th>Nội dung</th>
+                    <th>Khuyến mãi</th>
+                    <th>Ngày bắt đầu</th>
+                    <th>Ngày kết thúc</th>
+                    <th>Trạng thái</th>
+                    <th>Tùy chọn</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="sale in listSale">
+                    <td>{{sale.id}}</td>
+                    <td>{{sale.content}}</td>
+                    <td>{{sale.saleNumber}}</td>
+                    <td>{{sale.createDate}}</td>
+                    <td>{{sale.endDate}}</td>
+                    <td>{{sale.status}}</td>
+                    <td><button class="btn btn-primary" ng-click="updateSale(sale.id)">Chuyển trạng thái</button></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <!-- /#page-wrapper -->
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="../static/js/metisMenu.min.js"></script>
+
+<!-- Morris Charts JavaScript -->
+<script src="../static/js/raphael.min.js"></script>
+<script src="../static/js/morris.min.js"></script>
+<script src="../static/js/morris-data.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="../static/js/sb-admin-2.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+
+<script>
+    var app = angular.module('myApp', []) ;
+    app.controller('orderCtrl', function($scope, $http) {
+        $scope.detailProduct=function(){
+            window.location.href="http://localhost:8080/admin/list-product?pageNumber=1";
+        };
+        $scope.detailOrder=function(){
+            window.location.href="http://localhost:8080/admin/order";
+        };
+        $scope.detailNotifi=function(){
+            window.location.href="http://localhost:8080/admin/notification";
+        };
+        $scope.thongke=function(){
+            window.location.href="http://localhost:8080/admin/thongke";
+        };
+        $scope.sale=function(){
+            window.location.href="http://localhost:8080/admin/sale";
+        };
+        $scope.detailUser=function(){
+            window.location.href="http://localhost:8080/admin/employee";
+        };
+
+
+        $http.get('http://localhost:8080/api/sale/listSale').then(function(response) {
+            $scope.listSale = response.data.data;
+            for(var i=0;i<$scope.listSale.length;++i){
+                $scope.listSale[i].createDate = new Date($scope.listSale[i].createDate);
+                $scope.listSale[i].endDate = new Date($scope.listSale[i].endDate);
+            }
+        });
+        $scope.updateSale=function (id) {
+            $http.get('http://localhost:8080/api/sale/update-category/'+id).then(function(response) {
+                if(response.data.success){
+                    toastr.success('Đã chuyển trạng thái thành công !');
+                    $http.get('http://localhost:8080/api/sale/listSale').then(function(response) {
+                        $scope.listSale = response.data.data;
+                        for(var i=0;i<$scope.listSale.length;++i){
+                            $scope.listSale[i].createDate = new Date($scope.listSale[i].createDate);
+                            $scope.listSale[i].endDate = new Date($scope.listSale[i].endDate);
+                            console.log($scope.listSale[i].endDate);
+                        }
+                    });
+                }
+
+            });
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="navbar-default sidebar" role="navigation" th:fragment="sidebar_admin">
+    <div class="sidebar-nav navbar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="sidebar-search">
+                <div class="input-group custom-search-form">
+                    <input type="text" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                </div>
+                <!-- /input-group -->
+            </li>
+            <li>
+                <a ><i class="fa fa-dashboard fa-fw"></i> Danh mục</a>
+            </li>
+            <li>
+                <a  ng-click="detailProduct()">Sản phẩm</a>
+            </li>
+
+            <li>
+                <a  ng-click="detailOrder()">Hóa đơn</a>
+            </li>
+            <li>
+                <a  ng-click="detailNotifi()">Tạo thông báo</a>
+            </li>
+
+            <li>
+                <a  ng-click="sale()">Khuyến mãi</a>
+            </li>
+            <li>
+                <a  ng-click="thongke()">Thống kê</a>
+            </li>
+
+
+            <li>
+                <a  ng-click="detailUser()"> Quản lý tài khoản</a>
+
+            </li>
+
+        </ul>
+    </div>
+    <!-- /.sidebar-collapse -->
+</div>
+</body>
+</html>

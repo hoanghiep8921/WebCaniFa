@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Thống kê</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
+
+    <style type="text/css">
+        label{
+            position: relative;
+            cursor: pointer;
+            color: #666;
+            font-size: 30px;
+        }
+
+        input[type="checkbox"], input[type="radio"]{
+            position: absolute;
+            right: 9000px;
+        }
+
+        /*Check box*/
+        input[type="checkbox"] + .label-text:before{
+            content: "\f096";
+            font-family: "FontAwesome";
+            speak: none;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing:antialiased;
+            width: 1em;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        input[type="checkbox"]:checked + .label-text:before{
+            content: "\f14a";
+            color: #2980b9;
+            animation: effect 250ms ease-in;
+        }
+
+        input[type="checkbox"]:disabled + .label-text{
+            color: #aaa;
+        }
+
+        input[type="checkbox"]:disabled + .label-text:before{
+            content: "\f0c8";
+            color: #ccc;
+        }
+
+        /*Radio box*/
+
+        input[type="radio"] + .label-text:before{
+            content: "\f10c";
+            font-family: "FontAwesome";
+            speak: none;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing:antialiased;
+            width: 1em;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        input[type="radio"]:checked + .label-text:before{
+            content: "\f192";
+            color: #8e44ad;
+            animation: effect 250ms ease-in;
+        }
+
+        input[type="radio"]:disabled + .label-text{
+            color: #aaa;
+        }
+
+        input[type="radio"]:disabled + .label-text:before{
+            content: "\f111";
+            color: #ccc;
+        }
+
+        /*Radio Toggle*/
+
+        .toggle input[type="radio"] + .label-text:before{
+            content: "\f204";
+            font-family: "FontAwesome";
+            speak: none;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing:antialiased;
+            width: 1em;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .toggle input[type="radio"]:checked + .label-text:before{
+            content: "\f205";
+            color: #16a085;
+            animation: effect 250ms ease-in;
+        }
+
+        .toggle input[type="radio"]:disabled + .label-text{
+            color: #aaa;
+        }
+
+        .toggle input[type="radio"]:disabled + .label-text:before{
+            content: "\f204";
+            color: #ccc;
+        }
+
+
+        @keyframes effect{
+            0%{transform: scale(0);}
+            25%{transform: scale(1.3);}
+            75%{transform: scale(1.4);}
+            100%{transform: scale(1);}
+        }
+    </style>
+    <style>
+        .menu{
+            width:50px;
+            height:100%;
+            background-color:white;
+            position:fixed;
+            left:0;
+            border: none;
+            -webkit-transition: width 0.5s ease-in-out;
+            -moz-transition: width 0.5s ease-in-out;
+            -o-transition: width 0.5s ease-in-out;
+            transition: width 0.5s ease-in-out;
+            overflow: hidden;
+        }
+        .text-aside{
+            position: relative;
+            width: 50%;
+            height: 50%;
+            top: 25%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .fixed-text{
+            position: relative;
+            top: 50%;
+            left: auto;
+            height: 50px;
+            transform: rotate(90deg);
+            white-space: nowrap;
+            text-align: center;
+            margin-top: -10px;
+            max-height: 100px;
+            width: 112px;
+            margin-left: -45px;
+            padding-top: 15px;
+        }
+        .menu.is-visible{
+            width:450px;
+            -webkit-transition: width 0.5s ease-in-out;
+            -moz-transition: width 0.5s ease-in-out;
+            -o-transition: width 0.5s ease-in-out;
+            transition: width 0.5s ease-in-out;
+        }
+        .menu.is-visible .text-aside{
+            display: none;
+        }
+        .button-plus{
+            position:absolute;
+            top:0px;
+            left:15px;
+            z-index: 10;
+        }
+        .button-minus{
+            position:absolute;
+            top:0px;
+            left:420px;
+
+        }
+        .right{
+            width:65%;
+            float:right;
+            transition: width 0.5s ease-in-out;
+        }
+        .right-fix{
+
+            width: 95%;
+            float:right;
+            transition: width 0.5s ease-in-out;
+        }
+        .active{
+            color: blue;
+        }
+        button{
+            border: none;
+            padding: 0;
+            margin: 0;
+            background-color: rgba(0,0,0,0);
+        }
+        .test:after {
+            content: '\2807';
+            font-size: 2em;
+            color: #2e2e2e;
+        }
+        .clearfix:after {
+            content: ".";
+            visibility: hidden;
+            display: block;
+            clear: both;
+        }
+        .top-table{
+            margin-top:10px;
+        }
+        .options-menu{
+            padding: 5px 10px;
+        }
+        .options-menu:hover{
+            background-color: rgb(88, 141, 226);
+        }
+        hr{
+            margin:0;
+        }
+    </style>
+    <style type="text/css">
+        .list-group-item:hover{
+            color: #337ab7;
+            text-shadow:  0 0 1em #337ab7;
+            cursor: pointer;
+        }
+    </style>
+</head>
+</head>
+<body  ng-app="myApp" ng-controller="mainController" ng-init="loadData()">
+
+<div class="wrapper">
+    <div class="left">
+        <button ng-click="visible=!visible;showObject=!showObject; changeClass()" class="button-plus" ng-show="!showObject"><span class="glyphicon glyphicon-plus" style="font-size: 15px;color: gray"></span></button>
+        <div ng-class="{'is-visible':visible}" class="menu">
+            <div class="text-aside">
+                <div class="fixed-text"><span>Biểu đồ</span></div>
+            </div>
+
+            <div class="chart-dongnut" ng-show="showObject" >
+                <div id="container" style="width: 400px; height: 600px;"></div>
+            </div>
+
+        </div>
+        <button ng-click="visible=!visible; showObject=!showObject;changeClass()" class="button-minus" ng-show="showObject"><span class="glyphicon glyphicon-minus" style="font-size: 15px;color: gray"></span></button>
+    </div>
+    <div class="{{class}} clearfix">
+        <div class="top-table clearfix">
+            <div class="title-top-table" style="float:left;"><span style="border-radius: 100%;width: 10px;height: 10px;background-color: blue;display: inline-block; "></span>  <span style="font-size: 20px; font-weight: bold;">Doanh số bán hàng</span></div>
+            <button class="btn btn-success" ng-click="home()">Về trang trủ</button>
+            <div class="menu-button" style="float:right;">
+                <div class="btn-group dropleft">
+                    <button type="button" class="test" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" style="padding: 0">
+                        <div class="options-menu"><button data-toggle="modal" data-target="#myModal">Tùy chọn</button></div>
+                        <div  class="options-menu"> <button ng-click="exportData()">In báo cáo</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <STRONG>Thời gian</STRONG> --
+        Năm<input type="number" ng-model="yearBuy"  width="60px">
+        <button class="btn btn-primary" ng-click="loadData()"> Xem </button>
+        <div id="export">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th ng-show="id">Mã hóa đơn
+                        <div class="menu-button" style="float:right;">
+                            <div class="btn-group dropleft">
+                                <button class="glyphicon glyphicon-triangle-bottom "  ng-class="{active : sortTable == 'id'}" ng-click="orderIdup()" ></button>
+                                <button class="glyphicon glyphicon-triangle-top" ng-class="{active : sortTable == '-id'}" ng-click="orderIddown()" ></button>
+                            </div>
+                        </div>
+                    </th>
+                    <th ng-show="name">Tên khách hàng
+                        <div class="menu-button" style="float:right;">
+                            <div class="btn-group dropleft">
+                                <button class="glyphicon glyphicon-triangle-bottom"  ng-class="{active : sortTable == 'name'}" ng-click="orderNameup()"></button>
+                                <button class="glyphicon glyphicon-triangle-top"  ng-class="{active : sortTable == '-name'}" ng-click="orderNamedown()"></button>
+                            </div>
+                        </div>
+                    </th>
+                    <th ng-show="create">Ngày mua
+                        <div class="menu-button" style="float:right;">
+                            <div class="btn-group dropleft">
+                                <button class="glyphicon glyphicon-triangle-bottom"  ng-class="{active : sortTable == 'create'}" ng-click="orderCreateup()"></button>
+                                <button class="glyphicon glyphicon-triangle-top"  ng-class="{active : sortTable == '-create'}" ng-click="orderCreatedown()"></button>
+                            </div>
+                        </div>
+                    </th>
+
+                    <th ng-show="address">Địa chỉ
+                    </th>
+                    <th ng-show="detail">Chi tiết
+
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="order in listOrder | orderBy:sortTable " ng-class-odd="'info'">
+                    <td ng-show="id">{{order.id}}</td>
+                    <td ng-show="name">{{order.name}}</td>
+                    <td ng-show="create">{{order.create}}</td>
+                    <td ng-show="address">{{order.address}}</td>
+                    <td ng-show="detail">{{order.detail}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Hiện thị cột</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <form>
+                            <div class="form-check">
+                                <label>
+                                    <input type="checkbox" name="check"  ng-model="allColumn" ng-click="showAll()"> <span class="label-text"> All</span>
+                                </label>
+                            </div>
+                            <hr>
+                            <div class="form-check">
+                                <label>
+                                    <input type="checkbox" name="check" ng-model="id"  ng-click="checkFalse()"> <span class="label-text"> Mã hóa đơn</span>
+                                </label>
+                            </div>
+                            <hr>
+                            <div class="form-check">
+                                <label>
+                                    <input type="checkbox" name="check" ng-model="name" ng-click="checkFalse()"> <span class="label-text"> Tên khách hàng </span>
+                                </label>
+                            </div>
+                            <hr>
+                            <div class="form-check">
+                                <label>
+                                    <input type="checkbox" name="check" ng-model="create" ng-click="checkFalse()"> <span class="label-text"> Ngày mua </span>
+                                </label>
+                            </div>
+                            <hr>
+                            <div class="form-check">
+                                <label>
+                                    <input type="checkbox" name="check"  ng-model="address" ng-click="checkFalse()"> <span class="label-text"> Địa chỉ</span>
+                                </label>
+                            </div>
+                            <hr>
+                            <div class="form-check">
+                                <label>
+                                    <input type="checkbox" name="check"  ng-model="detail" ng-click="checkFalse()"> <span class="label-text">Chi tiết</span>
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script>
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    };
+
+    var app = angular.module('myApp', ['ui.directives']);
+
+    app.controller('mainController', function ($scope,$http) {
+        $scope.home=function(){
+            window.location.href="http://localhost:8080/admin";
+        }
+        $scope.data='';
+        $scope.opts = {
+            dateFormat: 'dd/mm/yy'
+        };
+        $scope.yearBuy=2018;
+        $scope.monthBuy=0;
+        $scope.dayBuy=0;
+        $scope.visible=true;
+        $scope.showObject=true;
+        $scope.class = "right";
+        $scope.changeClass = function(){
+            if ($scope.class === "right")
+                $scope.class = "right-fix";
+            else
+                $scope.class = "right";
+        };
+
+        $scope.allColumn=true;
+        $scope.id = true;
+        $scope.name = true;
+        $scope.address = true;
+        $scope.detail = true;
+        $scope.create = true;
+
+        $scope.checkFalse=function(){
+            if($scope.id == false || $scope.name == false ||  $scope.address == false ||   $scope.create == false ||  $scope.detail == false)
+                $scope.allColumn=false;
+        };
+
+        $scope.showAll=function(){
+            $scope.allColumn=true;
+            $scope.id = true;
+            $scope.name = true;
+            $scope.create = true;
+            $scope.address = true;
+            $scope.detail = true;
+        };
+        $scope.toggleId = function(){
+            if($scope.id === true)
+                $scope.id = false;
+            else if($scope.id === false)
+                $scope.id = true;
+        };
+        $scope.toggleName = function(){
+            if($scope.name === true)
+                $scope.name = false;
+            else if($scope.name === false)
+                $scope.name = true;
+        };
+        $scope.toggleCreate = function(){
+            if($scope.create === true)
+                $scope.create = false;
+            else if($scope.create === false)
+                $scope.create = true;
+        };
+        $scope.toggleAddress = function(){
+            if($scope.address === true)
+                $scope.address = false;
+            else if($scope.address === false)
+                $scope.address = true;
+        };
+        $scope.toggleDetail = function(){
+            if($scope.detail === true)
+                $scope.detail = false;
+            else if($scope.detail === false)
+                $scope.detail = true;
+        };
+
+        $scope.sortTable="";
+
+        $scope.orderIdup=function(){
+            $scope.sortTable="id";
+        };
+        $scope.orderIddown=function(){
+            $scope.sortTable="-id";
+        };
+        $scope.orderNameup=function(){
+            $scope.sortTable="name";
+        };
+        $scope.orderNamedown=function(){
+            $scope.sortTable="-name";
+        };
+        $scope.orderCreateUp=function(){
+            $scope.sortTable="created";
+        };
+        $scope.orderCreateDown=function(){
+            $scope.sortTable="-created";
+        };
+        $scope.listDate=[];
+        $scope.loadData=function(){
+            $http.get('http://localhost:8080/api/order/listOrderTime/'+$scope.yearBuy).then(function(response) {
+                $scope.listOrder = response.data.data;
+                var listDt=[];
+                var nameIssues=[];
+                for(var i=0;i<response.data.data.length;++i){
+                    var dt = new Date(response.data.data[i].create);
+                    listDt.push(dt);
+                }
+                $scope.listDate=listDt;
+                console.log($scope.listDate);
+            });
+            var nameIssues=[];
+            var countIssues=[];
+            $http.get('http://localhost:8080/api/order/listOrderTime/'+$scope.yearBuy).
+            then(function(response) {
+                $scope.listIssues = response.data.data;
+                for(var i=0;i<response.data.data.length;++i){
+
+                    nameIssues.push(response.data.data[i].id);
+                    countIssues.push(response.data.data[i].count);
+                }
+                var listOfObjects = [];
+                var total = 0;
+                for(var i=0;i<countIssues.length;++i){
+                    total= total + countIssues[i];
+                }
+                var label=[];
+                var colorLabel=[];
+
+                for(var i=0;i<nameIssues.length;++i){
+                    var dataChart={};
+                    label.push("Mã hóa đơn"+nameIssues[i]+" - "+(countIssues[i]/total*100)+"%");
+                    dataChart['name']=nameIssues[i];
+                    dataChart['y']=countIssues[i];
+                    listOfObjects.push(dataChart);
+                    colorLabel.push(getRandomColor());
+                }
+                console.log(label);
+                console.log(listOfObjects);
+                $(function() {
+                    Highcharts.setOptions({
+                        colors: colorLabel
+                    });
+
+                    chart = new Highcharts.Chart({
+                        chart: {
+                            renderTo: 'container',
+                            type: 'pie',
+                            events: {
+                                load: function(event) {
+                                    var chart = this,
+                                        points = chart.series[0].points,
+                                        len = points.length,
+                                        total = 0,
+                                        i = 0;
+
+                                    for (; i < len; i++) {
+                                        total += points[i].y;
+                                    }
+
+                                    chart.setTitle({
+                                        text: '<p>' + total+ '</p><br>sản phẩm',
+                                        align: 'center',
+                                        verticalAlign: 'middle',
+                                        y:-5,
+                                        style: {
+                                            fontWeight: 'bold'
+                                        },
+                                    });
+                                }
+                            }
+                        },
+                        tooltip: {
+                            formatter: function() {
+                                return '<b>' + this.point.name + '</b>: €' + this.y;
+                            }
+                        },
+                        legend: {
+                            enabled: true,
+                            margin:50,
+                            align: 'center',
+                            verticalAlign: 'bottom',
+                            itemWidth: 170,
+                            floating: true,
+                            labelFormatter: function() {
+                                return '<span style="font-family:Verdana, Geneva, sans-serif; font-weight: normal;">Hóa đơn' + this.name + ' </span> <span style:"font-weight: normal;"><b>' + ((this.y/total)*100).toFixed(2)  + ' % <br/></span>';
+                            }
+                        },
+                        plotOptions: {
+                            column: {
+                                stacking: 'normal'
+                            }
+                        },
+                        series: [{
+                            name: 'Browsers',
+                            data: listOfObjects,
+                            size: '70%',
+                            innerSize: '55%',
+                            showInLegend: true,
+                            dataLabels: {
+                                enabled: false
+                            }
+                        }]
+                    }, function(chart) { // on complete
+
+                    });
+                });
+
+
+
+            });
+        }
+
+
+        $scope.exportData = function () {
+            var blob = new Blob([document.getElementById('export').innerHTML], {
+                type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+            });
+            saveAs(blob, "Tablereport.xls");
+        };
+    });
+
+</script>
+
+</body>
+</html>
